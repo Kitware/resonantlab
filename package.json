@@ -1,0 +1,18 @@
+{
+  "name": "resonantlab",
+  "version": "0.0.0",
+  "description": "Choose your own visualization adventure",
+  "scripts": {
+    "postinstall": "git rev-parse HEAD >git-sha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronichoudhury-work/resonantlab.git"
+  },
+  "author": "Roni Choudhury",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ronichoudhury-work/resonantlab/issues"
+  },
+  "homepage": "https://github.com/ronichoudhury-work/resonantlab#readme"
+}
