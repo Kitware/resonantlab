@@ -2,6 +2,8 @@
 
 import os
 
+import yaml
+
 from girder.api import access
 from girder.api.describe import Description, describeRoute
 from girder.api.rest import Resource
@@ -38,6 +40,11 @@ def load(info):
     # Compute full path to plugin's index.html file.
     ResonantLab._cp_config['tools.staticdir.dir'] = os.path.join(info['pluginRootDir'], 'web_external')
 
+    # Read the version number from the plugin specification file.
+    config_file = os.path.join(info['pluginRootDir'], 'plugin.yml')
+    with open(config_file) as f:
+        config = yaml.safe_load(f)
+
     # Instantiate ResonantLab resource and register the plugin with Girder.
-    app = info['apiRoot'].resonantlab = ResonantLab(version='0.0.0')
+    app = info['apiRoot'].resonantlab = ResonantLab(version=config.get('version'))
     registerPluginWebroot(app, info['name'])
