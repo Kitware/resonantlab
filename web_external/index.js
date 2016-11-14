@@ -1,1 +1,3 @@
-console.log('hello, world');
+import { store } from './redux/store';
+
+console.log(store.getState());

@@ -1,6 +1,8 @@
 name: Resonant Lab
 description: Choose your own visualization adventure
 version: 0.1.0
+npm:
+  file: package.json
 webpack:
   main: web_external/index.js
   output: index
