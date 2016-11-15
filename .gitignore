@@ -1,3 +1,4 @@
 *.swp
 *.pyc
 git-sha
+node_modules/
