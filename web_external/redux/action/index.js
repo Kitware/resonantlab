@@ -1,5 +1,5 @@
 import { makeEnum } from '../../util';
-import actionSpec from './actionspec.json';
+import actionSpec from './actionspec.yml';
 
 const buildActionConstructor = (type, argSpec) => {
   if (argSpec.some(v => v === 'type')) {

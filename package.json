@@ -17,6 +17,8 @@
   "homepage": "https://github.com/ronichoudhury-work/resonantlab#readme",
   "devDependencies": {
     "immutable": "^3.8.1",
-    "redux": "^3.6.0"
+    "json-loader": "^0.5.4",
+    "redux": "^3.6.0",
+    "yaml-loader": "^0.4.0"
   }
 }
