@@ -6,3 +6,4 @@ npm:
 webpack:
   main: web_external/index.js
   output: index
+  defaultLoaders: false
