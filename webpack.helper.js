@@ -11,14 +11,16 @@ module.exports = function (config, data) {
   config.module.loaders = [
     {
       test: /\.yml$/,
-      include: [
-        pluginSourceDir,
-        nativeSourceDir
-      ],
+      include: sourceDirs,
       loaders: [
         'json-loader',
         'yaml-loader'
       ]
+    },
+    {
+      test: /\.jade$/,
+      include: sourceDirs,
+      loader: 'jade-loader'
     }
   ].concat(config.module.loaders);
 
