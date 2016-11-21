@@ -10,6 +10,14 @@ module.exports = function (config, data) {
   config.module = config.module || {};
   config.module.loaders = [
     {
+      test: /\.js$/,
+      loader: 'babel-loader',
+      include: sourceDirs,
+      query: {
+        presets: ['es2015']
+      }
+    },
+    {
       test: /\.yml$/,
       include: sourceDirs,
       loaders: [
@@ -21,6 +29,16 @@ module.exports = function (config, data) {
       test: /\.jade$/,
       include: sourceDirs,
       loader: 'jade-loader'
+    },
+    {
+      test: /\.styl$/,
+      include: sourceDirs,
+      loaders: ['style-loader', 'css-loader', 'stylus-loader']
+    },
+    {
+      test: /\.svg$/,
+      include: sourceDirs,
+      loader: 'url-loader'
     }
   ].concat(config.module.loaders);
 
