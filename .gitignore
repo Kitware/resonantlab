@@ -1,4 +1,4 @@
-*.swp
+*.sw*
 *.pyc
 git-sha
 node_modules/
