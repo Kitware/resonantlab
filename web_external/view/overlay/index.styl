@@ -1,0 +1,124 @@
+@require '../../style/colors.styl';
+
+#overlay
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($lightDisabledColor,0.85);
+  z-index: 1108;
+  overflow: auto;
+
+  .modal-dialog
+  div.large-dialog
+  div.small-dialog
+  div.hint
+    background-color: $panelBackgroundColor;
+    border: 1px solid rgba($shadowColor,0.2);
+    box-shadow: 0 5px 15px rgba($shadowColor,0.5);
+    min-height: 15em;
+
+  div.large-dialog
+    position: relative;
+    max-width: 50em;
+    margin: 5em auto 5em auto;
+    padding: 1em 2em 2em 3em;
+
+  div.small-dialog
+    position: relative;
+    max-width: 30em;
+    min-height: initial;
+    margin: 10em auto auto auto;
+    padding: 1em 2em 2em 3em;
+
+  .large-dialog hr
+    position: relative;
+    width: 100%;
+    border: none;
+    height: 1px;
+    background-color: $separatorColor;
+
+  .large-dialog .divider
+    position: relative;
+    margin: 0em 1em;
+    min-height: 100%;
+    border: none;
+    min-width: 1px;
+    max-width: 1px;
+    background-color: $separatorColor;
+
+  div.hint
+    position: relative;
+    margin: 5em;
+    padding: 3em;
+
+  pre
+    -ms-user-select: initial;
+    -moz-user-select: initial;
+    -webkit-user-select: initial;
+
+  img.header-icon
+    float: right;
+    height: 10em;
+    margin: 2em;
+
+  img.header-icon.warning
+    -webkit-filter: imgColorFilter($warningIconColor);
+    filter: imgColorFilter($warningIconColor);
+
+  img.header-icon.success
+    -webkit-filter: imgColorFilter($successIconColor);
+    filter: imgColorFilter($successIconColor);
+
+  div.circleset
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+
+  div.circle-button
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    width: 6em;
+    height: 6em;
+    padding: 1em;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    img
+      width: 3em;
+      height: 3em;
+
+  div.current.circle-button
+    background-color: $backgroundRolloverColor;
+
+  div.circle-button:hover
+    border: 2px solid $darkRolloverColor;
+
+  summary
+    outline: none;
+
+    pre
+      display: inline-block;
+      padding: 0px;
+      margin: 0px;
+      position: relative;
+      bottom: 0.15em;
+
+  #close-overlay
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+
+  #close-overlay:hover
+    -webkit-filter: brightness(150%);
+    filter: brightness(150%);
