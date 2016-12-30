@@ -22,7 +22,5 @@ module.exports = function (config, data) {
     }
   ].concat(config.module.loaders);
 
-  delete config.resolve.extensions;
-
   return candelaWebpack(config, path.resolve(pluginSourceDir, '..', 'node_modules', 'candela'));
 };
