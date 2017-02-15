@@ -1,4 +1,4 @@
-import Immutable from 'girder_plugins/resonantlab/node/immutable';
+import Immutable from 'immutable';
 
 import { makeEnum } from '../../util';
 import { actionType } from '../action';

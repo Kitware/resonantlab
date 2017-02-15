@@ -1,4 +1,4 @@
-import { select } from 'girder_plugins/resonantlab/node/d3-selection';
+import { select } from 'd3-selection';
 
 import './index.styl';
 import html from './index.jade';

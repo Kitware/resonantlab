@@ -1,4 +1,4 @@
-import { createStore } from 'girder_plugins/resonantlab/node/redux';
+import { createStore } from 'redux';
 
 import { reducer } from '../reducer';
 

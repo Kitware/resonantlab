@@ -1,4 +1,4 @@
-import { select } from 'girder_plugins/resonantlab/node/d3-selection';
+import { select } from 'd3-selection';
 
 import { store } from './redux/store';
 console.log(store.getState());
