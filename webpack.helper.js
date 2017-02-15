@@ -31,12 +31,17 @@ module.exports = function (config, data) {
       loader: 'jade-loader'
     },
     {
+      test: /\.css$/,
+      include: sourceDirs,
+      loaders: ['style-loader', 'css-loader']
+    },
+    {
       test: /\.styl$/,
       include: sourceDirs,
       loaders: ['style-loader', 'css-loader', 'stylus-loader']
     },
     {
-      test: /\.svg$/,
+      test: /\.svg$|\.png$/,
       include: sourceDirs,
       loader: 'url-loader'
     }

@@ -1,14 +1,16 @@
 import { select } from 'd3-selection';
 
-import { store } from './redux/store';
-console.log(store.getState());
+import { store,
+         observeStore } from './redux/store';
 
 import html from './index.jade';
 import { initialize as initHeader } from './view/layout/header';
 import { initialize as initStartingScreen } from './view/overlay/StartingScreen';
+import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
 
 import './view/overlay/index.styl';
 import './index.styl';
+import './style/forms/index.css';
 
 // Instantiate the main application template.
 select('#app').html(html);
@@ -18,3 +20,22 @@ initHeader(select('#header'));
 
 // Instantiate the starting screen.
 initStartingScreen(select('#overlay'));
+
+// Log state changes.
+observeStore(next => {
+  console.log(next.toJS());
+});
+
+// Render state changes.
+observeStore(next => {
+  switch (next.get('mode')) {
+    case 'project':
+      console.log('project mode');
+      break;
+
+    case 'login':
+      console.log('login mode');
+      initLoginDialog(select('#overlay'));
+      break;
+  }
+});
