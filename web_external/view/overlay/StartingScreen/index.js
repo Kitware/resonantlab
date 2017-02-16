@@ -13,6 +13,10 @@ import githubLogo from '../../../image/Github_Mark.svg';
 import contactIcon from '../../../image/contact.svg';
 import closeIcon from '../../../image/close.svg';
 
+import { action } from '../../../redux/action';
+import { store } from '../../../redux/store';
+import { appMode } from '../../../redux/reducer';
+
 const loggedIn = false;
 
 const initialize = (sel) => {
@@ -30,6 +34,10 @@ const initialize = (sel) => {
     closeIcon,
     loggedIn
 	}));
+
+  sel.select('#login-link').on('click', () => {
+    store.dispatch(action.switchMode(appMode.loginDialog));
+  });
 }
 
 const render = () => {

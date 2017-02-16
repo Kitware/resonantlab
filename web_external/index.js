@@ -3,6 +3,8 @@ import { select } from 'd3-selection';
 import { store,
          observeStore } from './redux/store';
 
+import { appMode } from './redux/reducer';
+
 import html from './index.jade';
 import { initialize as initHeader } from './view/layout/header';
 import { initialize as initStartingScreen } from './view/overlay/StartingScreen';
@@ -18,9 +20,6 @@ select('#app').html(html);
 // Instantiate the header.
 initHeader(select('#header'));
 
-// Instantiate the starting screen.
-initStartingScreen(select('#overlay'));
-
 // Log state changes.
 observeStore(next => {
   console.log(next.toJS());
@@ -33,9 +32,12 @@ observeStore(next => {
       console.log('project mode');
       break;
 
-    case 'login':
-      console.log('login mode');
+    case appMode.loginDialog:
       initLoginDialog(select('#overlay'));
+      break;
+
+    case appMode.startScreen:
+      initStartingScreen(select('#overlay'));
       break;
   }
 });
