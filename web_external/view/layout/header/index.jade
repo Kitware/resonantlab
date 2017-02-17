@@ -1,0 +1,15 @@
+//- We display these in reverse so that the interfaceIcons are always on the
+//- right, even if the other stuff is hidden
+
+#interfaceIcons
+  img#helpButton.headerButton(title="Show information about the interface" src=infoIcon)
+  //- img#achievementsButton.headerButton(src="../../../images/achievements.svg")
+  img#hamburgerButton.headerButton(title="Main Menu" src=hamburgerIcon)
+
+#projectHeader
+  img#projectVisibilityButton.headerButton(title="See/change who can see the project you're working on" src=privacyIcon)
+  span#projectName(contentEditable="true" max-width="30em" title="Rename this project")= filename
+  #projectIcons
+
+#brandingIcons
+  img#aboutResLabHeaderButton.headerButton(title="About Resonant Lab" src=reslabIcon)

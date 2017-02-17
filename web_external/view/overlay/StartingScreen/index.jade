@@ -1,0 +1,90 @@
+#starting-screen
+  #new-project-buttons.circleset
+    #open-project-button.circle-button
+      img(src=folderIcon)
+      span Open a project
+
+    #empty-project-button.circle-button
+      img(src=fileIcon)
+      span Create an empty project
+
+    #start-with-vis-button.circle-button
+      img(src=scatterplotIcon)
+      span Start with a visualization
+
+    #start-with-data-button.circle-button
+      img(src=datasetIcon)
+      span Start with a dataset
+
+  #welcome-section
+    img#logo(src=reslabBanner)
+
+    #text-wall
+      .text-chunk
+        p.
+          Resonant Lab is a #[strong beta] tool under active development
+          by Kitware, Inc. to help users build and share visualizations without
+          needing to write code.
+
+        p.
+          This tool focuses on doing one thing, and doing it well: given a
+          reasonably clean dataset, connect it to a visualization. Its
+          architecture is designed to be flexible to a diverse array of dataset
+          inputs, as well as new, state-of-the-art visualizations. However, we
+          believe that problems like data reshaping and the process of designing
+          custom visualizations are best dealt with elsewhere.
+
+        img(src=reslabLogo)
+
+      .text-chunk
+        p.
+          If you have those needs, check out other
+          #[a(href="http://resonant.kitware.com" target="_blank") Resonant applications]
+          that we are developing to address these issues
+          independently. The Resonant platform includes both general solutions
+          like Resonant Lab, as well as highly specialized solutions developed
+          for our partners and customers.
+
+        img(src=resonantLogo)
+
+      .text-chunk
+        p.
+
+          Resonant Lab is brought to you by
+          #[a(href="http://www.kitware.com" target="_blank") Kitware],
+          a leader in innovative, open-source solutions to today's scientific
+          computing and data analytics challenges.
+
+        img(src=kitwareLogo)
+
+      .text-chunk
+        p.
+          Resonant Lab is an open source project, released under the Apache v2
+          License. The source code is available
+          #[a(href="https://github.com/Kitware/candela/tree/master/app/resonantlab" target="_blank") on Github].
+
+        img(src=githubLogo)
+
+      .text-chunk
+        p.
+          If something isn't working as it should, please
+          #[a(href="") let us know].
+          We want to get any problems fixed as soon as possible.
+
+        p.
+          Is there something that this should be doing, but it's not? Do you
+          have an idea for how this could be improved? If so, we'd love to work
+          with you to build a
+          #[a(href="http://www.kitware.com/company/contact_kitware.php" target="_blank") custom solution]
+          that better fits your needs.
+
+        img(src=contactIcon)
+
+  #project-showcase
+
+  .login-links
+    span.logout-link(style="display: none;") #[a#logout-link Log Out]
+    span.login-link(style="display: none;") #[a#register-link Register] | #[a#login-link Log In]
+
+
+  img#close-overlay(src=closeIcon)

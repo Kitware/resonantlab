@@ -1,2 +1,9 @@
 switchMode:
   - mode
+
+lastMode: []
+
+login:
+  - username
+
+logout: []
