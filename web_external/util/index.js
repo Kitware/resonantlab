@@ -43,6 +43,7 @@ const enumValue = (enumVal) => enumVal.split('.')[1];
 
 const switchOverlay = (which) => {
   select('#overlay')
+    .style('display', which === null ? 'none' : null)
     .selectAll('.overlay')
     .style('display', function () {
       return select(this).classed(which) ? null : 'none';
