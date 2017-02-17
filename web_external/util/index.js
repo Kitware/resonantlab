@@ -1,3 +1,4 @@
+import { select } from 'd3-selection';
 import Set from 'es6-set';
 
 let namespaces = new Set();
@@ -40,8 +41,17 @@ const makeEnum = (ns, keys) => {
 const enumName = (enumVal) => enumVal.split('.')[0];
 const enumValue = (enumVal) => enumVal.split('.')[1];
 
+const switchOverlay = (which) => {
+  select('#overlay')
+    .selectAll('.overlay')
+    .style('display', function () {
+      return select(this).classed(which) ? null : 'none';
+    });
+};
+
 export {
   makeEnum,
   enumName,
-  enumValue
+  enumValue,
+  switchOverlay
 };

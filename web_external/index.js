@@ -1,9 +1,8 @@
 import { select } from 'd3-selection';
-
 import { store,
          observeStore } from './redux/store';
-
 import { appMode } from './redux/reducer';
+import { switchOverlay } from './util';
 
 import html from './index.jade';
 import { initialize as initHeader } from './view/layout/header';
@@ -20,12 +19,30 @@ select('#app').html(html);
 // Instantiate the header.
 initHeader(select('#header'));
 
+// Instantiate the overlays.
+//
+// Starting screen.
+let target = select('#overlay')
+  .append('div')
+  .classed('overlay', true)
+  .classed('starting-screen', true);
+initStartingScreen(target);
+
+// Login dialog.
+target = select('#overlay')
+  .append('div')
+  .classed('overlay', true)
+  .classed('login-dialog', true);
+initLoginDialog(target);
+
 // Log state changes.
 observeStore(next => {
   console.log(next.toJS());
 });
 
 // Render state changes.
+//
+// Change "application mode".
 observeStore(next => {
   const mode = next.get('mode');
   select('#overlay').style('display', mode === appMode.project ? 'none' : null);
@@ -36,11 +53,11 @@ observeStore(next => {
       break;
 
     case appMode.loginDialog:
-      initLoginDialog(select('#overlay'));
+      switchOverlay('login-dialog');
       break;
 
     case appMode.startScreen:
-      initStartingScreen(select('#overlay'));
+      switchOverlay('starting-screen');
       break;
   }
 }, s => s.get('mode'));
