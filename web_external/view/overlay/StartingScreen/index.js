@@ -1,3 +1,5 @@
+import { select } from 'd3-selection';
+
 import html from './index.jade';
 import './index.styl';
 
@@ -16,6 +18,8 @@ import closeIcon from '../../../image/close.svg';
 import { action } from '../../../redux/action';
 import { store } from '../../../redux/store';
 import { appMode } from '../../../redux/reducer';
+
+import { logout } from 'girder/auth';
 
 const initialize = (sel) => {
   const loggedIn = !!store.getState().get('user');
@@ -38,10 +42,20 @@ const initialize = (sel) => {
   sel.select('#login-link').on('click', () => {
     store.dispatch(action.switchMode(appMode.loginDialog));
   });
+
+  sel.select('span.logout-link').on('click', () => {
+    logout().then(() => store.dispatch(action.logout()));
+  });
 }
 
 const render = () => {
+  const loggedIn = !!store.getState().get('user');
 
+  let el = select('.overlay.starting-screen');
+  el.select('span.logout-link')
+    .style('display', loggedIn ? null : 'none');
+  el.select('span.login-link')
+    .style('display', loggedIn ? 'none' : null);
 };
 
 export {

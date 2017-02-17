@@ -10,7 +10,17 @@ import { login } from 'girder/auth';
 const initialize = (sel) => {
   sel.html(html());
 
+  const clear = () => {
+    sel.select('#g-login')
+      .property('value', '');
+    sel.select('#g-password')
+      .property('value', '');
+    sel.select('.g-validation-failed-message')
+      .text('');
+  }
+
   sel.select('a#close-login').on('click', () => {
+    clear();
     store.dispatch(action.lastMode());
   });
 
@@ -21,6 +31,7 @@ const initialize = (sel) => {
     let promise = login(username, password);
     promise.then(
       resp => {
+        clear();
         store.dispatch(action.login(resp.login));
         store.dispatch(action.lastMode());
       },

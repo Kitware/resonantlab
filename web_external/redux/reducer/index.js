@@ -44,6 +44,10 @@ const reducer = (state = initial, action = {}) => {
           .setIn(['user', 'login'], action.username);
       });
       break;
+
+    case actionType.logout:
+      newState = newState.set('user', null);
+      break;
   }
 
   return newState;

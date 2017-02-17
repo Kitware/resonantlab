@@ -6,7 +6,8 @@ import { switchOverlay } from './util';
 
 import html from './index.jade';
 import { initialize as initHeader } from './view/layout/header';
-import { initialize as initStartingScreen } from './view/overlay/StartingScreen';
+import { initialize as initStartingScreen,
+         render as renderStartingScreen } from './view/overlay/StartingScreen';
 import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
 
 import './view/overlay/index.styl';
@@ -56,3 +57,9 @@ observeStore(next => {
       break;
   }
 }, s => s.get('mode'));
+
+// Update start screen with login/logout changes.
+observeStore(
+  next => renderStartingScreen(),
+  s => s.get('user')
+);
