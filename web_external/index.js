@@ -40,4 +40,4 @@ observeStore(next => {
       initStartingScreen(select('#overlay'));
       break;
   }
-});
+}, s => s.get('mode'));

@@ -17,8 +17,8 @@ const observe = (store, onChange, selector) => {
   let lastState;
 
   const handler = () => {
-    let nextState = selector(store.getState());
-    if (nextState !== lastState) {
+    let nextState = store.getState();
+    if (!lastState || selector(nextState) !== selector(lastState)) {
       onChange(nextState, lastState);
       lastState = nextState;
     }
