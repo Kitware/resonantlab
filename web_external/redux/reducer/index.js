@@ -5,16 +5,22 @@ import { actionType } from '../action';
 
 const appMode = makeEnum('appMode', [
   'startScreen',
-  'loginDialog'
+  'loginDialog',
+  'project'
 ]);
 
 const initial = Immutable.Map({
   mode: appMode.startScreen,
-  lastMode: appMode.startScreen
+  lastMode: appMode.startScreen,
+  user: null
 });
 
 const reducer = (state = initial, action = {}) => {
   let newState = state;
+
+  if (action.type === undefined) {
+    throw new Error('fatal: undefined action type');
+  }
 
   switch (action.type) {
     case actionType.switchMode:
@@ -29,6 +35,13 @@ const reducer = (state = initial, action = {}) => {
         let lastMode = s.get('lastMode');
         s.set('lastMode', s.get('mode'))
           .set('mode', lastMode);
+      });
+      break;
+
+    case actionType.login:
+      newState = newState.withMutations(s => {
+        s.delete('user')
+          .setIn(['user', 'login'], action.username);
       });
       break;
   }

@@ -27,8 +27,11 @@ observeStore(next => {
 
 // Render state changes.
 observeStore(next => {
-  switch (next.get('mode')) {
-    case 'project':
+  const mode = next.get('mode');
+  select('#overlay').style('display', mode === appMode.project ? 'none' : null);
+
+  switch (mode) {
+    case appMode.project:
       console.log('project mode');
       break;
 

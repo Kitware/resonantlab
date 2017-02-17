@@ -17,9 +17,9 @@ import { action } from '../../../redux/action';
 import { store } from '../../../redux/store';
 import { appMode } from '../../../redux/reducer';
 
-const loggedIn = false;
-
 const initialize = (sel) => {
+  const loggedIn = !!store.getState().get('user');
+
   sel.html(html({
     folderIcon,
     fileIcon,
