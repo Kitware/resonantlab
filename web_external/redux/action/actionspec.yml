@@ -7,3 +7,6 @@ login:
   - username
 
 logout: []
+
+openProject:
+  - name

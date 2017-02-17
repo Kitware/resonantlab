@@ -18,6 +18,7 @@ import closeIcon from '../../../image/close.svg';
 import { action } from '../../../redux/action';
 import { store } from '../../../redux/store';
 import { appMode } from '../../../redux/reducer';
+import { initializeNewProject } from '../../../util';
 
 import { logout } from 'girder/auth';
 
@@ -39,7 +40,15 @@ const initialize = (sel) => {
     loggedIn
 	}));
 
-  sel.select('#login-link').on('click', () => {
+  sel.select('#empty-project-button')
+    .on('click', () => {
+      initializeNewProject().then(project => {
+        store.dispatch(action.switchMode(appMode.project));
+        store.dispatch(action.openProject(project.name));
+      });
+    });
+
+  sel.select('span.login-link').on('click', () => {
     store.dispatch(action.switchMode(appMode.loginDialog));
   });
 

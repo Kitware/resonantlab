@@ -61,3 +61,13 @@ observeStore(
   next => renderStartingScreen(),
   s => s.get('user')
 );
+
+// Open a project.
+observeStore(next => {
+  const project = next.get('project');
+
+  if (project) {
+    select('#projectName')
+      .text(project.get('name'));
+  }
+}, s => s.get('project'));

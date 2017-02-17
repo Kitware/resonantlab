@@ -50,9 +50,16 @@ const switchOverlay = (which) => {
     });
 };
 
+const initializeNewProject = () => {
+  return Promise.resolve({
+    name: 'Foobarius'
+  });
+};
+
 export {
   makeEnum,
   enumName,
   enumValue,
-  switchOverlay
+  switchOverlay,
+  initializeNewProject
 };
