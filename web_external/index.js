@@ -20,20 +20,15 @@ select('#app').html(html);
 initHeader(select('#header'));
 
 // Instantiate the overlays.
-//
-// Starting screen.
-let target = select('#overlay')
-  .append('div')
-  .classed('overlay', true)
-  .classed('starting-screen', true);
-initStartingScreen(target);
+const overlays = [
+  ['starting-screen', initStartingScreen],
+  ['login-dialog', initLoginDialog]
+];
 
-// Login dialog.
-target = select('#overlay')
+overlays.forEach(spec => spec[1](select('#overlay')
   .append('div')
   .classed('overlay', true)
-  .classed('login-dialog', true);
-initLoginDialog(target);
+  .classed(spec[0], true)));
 
 // Log state changes.
 observeStore(next => {
