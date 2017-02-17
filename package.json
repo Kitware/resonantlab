@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "Choose your own visualization adventure",
   "scripts": {
-    "postinstall": "git rev-parse HEAD >git-sha"
+    "postinstall": "git rev-parse HEAD >git-sha",
+    "lint": "semistandard | snazzy"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,8 @@
     "jade-loader": "^0.8.0",
     "json-loader": "^0.5.4",
     "redux": "^3.6.0",
+    "semistandard": "^9.2.1",
+    "snazzy": "^6.0.0",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
