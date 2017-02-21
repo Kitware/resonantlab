@@ -3,7 +3,7 @@ import actionSpec from './actionspec.yml';
 
 const buildActionConstructor = (type, argSpec) => {
   if (argSpec.some(v => v === 'type')) {
-    throw new Error('fatal: action constructor for "${type}" has an argument named "type"');
+    throw new Error(`fatal: action constructor for "${type}" has an argument named "type"`);
   }
 
   return (...args) => {
@@ -14,14 +14,14 @@ const buildActionConstructor = (type, argSpec) => {
       action[argSpec[i]] = args[i];
     }
     return action;
-  }
+  };
 };
 
 const buildActions = () => {
   let action = {};
   let actionType = makeEnum('actionType', Object.keys(actionSpec));
 
-  for(let key in actionSpec) {
+  for (let key in actionSpec) {
     if (actionSpec.hasOwnProperty(key)) {
       action[key] = buildActionConstructor(actionType[key], actionSpec[key]);
     }

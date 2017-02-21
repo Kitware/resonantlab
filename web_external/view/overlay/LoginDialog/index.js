@@ -1,7 +1,6 @@
 import html from './index.jade';
 import './index.styl';
 
-import { appMode } from '../../../redux/reducer';
 import { action } from '../../../redux/action';
 import { store } from '../../../redux/store';
 
@@ -17,7 +16,7 @@ const initialize = (sel) => {
       .property('value', '');
     sel.select('.g-validation-failed-message')
       .text('');
-  }
+  };
 
   sel.select('a#close-login').on('click', () => {
     clear();
@@ -39,7 +38,7 @@ const initialize = (sel) => {
         .text(xhr.responseJSON.message)
     );
   });
-}
+};
 
 export {
   initialize
