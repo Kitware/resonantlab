@@ -55,16 +55,25 @@ const initialize = (sel) => {
   sel.select('span.logout-link').on('click', () => {
     logout().then(() => store.dispatch(action.logout()));
   });
+
+  sel.select('#close-overlay').on('click', () => store.dispatch(action.lastMode()));
 };
 
 const render = () => {
-  const loggedIn = !!store.getState().get('user');
+  const state = store.getState();
+  const loggedIn = !!state.get('user');
 
   let el = select('.overlay.starting-screen');
   el.select('span.logout-link')
     .style('display', loggedIn ? null : 'none');
   el.select('span.login-link')
     .style('display', loggedIn ? 'none' : null);
+
+  // Only display the "close" button if the starting screen was invoked from a
+  // different part of the app.
+  const showClose = state.get('mode') !== state.get('lastMode');
+  el.select('#close-overlay')
+    .style('display', showClose ? null : 'none');
 };
 
 export {
