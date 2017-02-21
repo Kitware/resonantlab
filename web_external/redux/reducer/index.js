@@ -12,7 +12,8 @@ const appMode = makeEnum('appMode', [
 const initial = Immutable.Map({
   mode: appMode.startScreen,
   lastMode: appMode.startScreen,
-  user: null
+  user: null,
+  project: null
 });
 
 const reducer = (state = initial, action = {}) => {
@@ -47,6 +48,13 @@ const reducer = (state = initial, action = {}) => {
 
     case actionType.logout:
       newState = newState.set('user', null);
+      break;
+
+    case actionType.openProject:
+      newState = newState.withMutations(s => {
+        s.delete('project')
+          .setIn(['project', 'name'], action.name);
+      });
       break;
   }
 

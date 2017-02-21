@@ -41,11 +41,9 @@ observeStore(next => {
 // Change "application mode".
 observeStore(next => {
   const mode = next.get('mode');
-  select('#overlay').style('display', mode === appMode.project ? 'none' : null);
-
   switch (mode) {
     case appMode.project:
-      console.log('project mode');
+      switchOverlay(null);
       break;
 
     case appMode.loginDialog:
@@ -63,3 +61,13 @@ observeStore(
   next => renderStartingScreen(),
   s => s.get('user')
 );
+
+// Open a project.
+observeStore(next => {
+  const project = next.get('project');
+
+  if (project) {
+    select('#projectName')
+      .text(project.get('name'));
+  }
+}, s => s.get('project'));

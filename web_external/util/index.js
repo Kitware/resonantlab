@@ -43,15 +43,24 @@ const enumValue = (enumVal) => enumVal.split('.')[1];
 
 const switchOverlay = (which) => {
   select('#overlay')
+    .style('display', which === null ? 'none' : null)
     .selectAll('.overlay')
     .style('display', function () {
       return select(this).classed(which) ? null : 'none';
     });
 };
 
+const initializeNewProject = () => {
+  console.log('stub function: initializeNewProject');
+  return Promise.resolve({
+    name: 'Foobarius'
+  });
+};
+
 export {
   makeEnum,
   enumName,
   enumValue,
-  switchOverlay
+  switchOverlay,
+  initializeNewProject
 };
