@@ -3,22 +3,22 @@ import { select } from 'd3-selection';
 import html from './index.jade';
 import './index.styl';
 
-import folderIcon from '../../../image/light/folder.svg';
-import fileIcon from '../../../image/light/file.svg';
-import scatterplotIcon from '../../../image/light/scatterplot.svg';
-import datasetIcon from '../../../image/light/dataset.svg';
-import reslabBanner from '../../../image/Resonant_Lab_cropped.svg';
-import reslabLogo from '../../../image/Resonant_Lab_Mark.svg';
-import resonantLogo from '../../../image/Resonant_Mark.svg';
-import kitwareLogo from '../../../image/Kitware_Mark.svg';
-import githubLogo from '../../../image/Github_Mark.svg';
-import contactIcon from '../../../image/contact.svg';
-import closeIcon from '../../../image/close.svg';
+import folderIcon from '~reslab/image/light/folder.svg';
+import fileIcon from '~reslab/image/light/file.svg';
+import scatterplotIcon from '~reslab/image/light/scatterplot.svg';
+import datasetIcon from '~reslab/image/light/dataset.svg';
+import reslabBanner from '~reslab/image/Resonant_Lab_cropped.svg';
+import reslabLogo from '~reslab/image/Resonant_Lab_Mark.svg';
+import resonantLogo from '~reslab/image/Resonant_Mark.svg';
+import kitwareLogo from '~reslab/image/Kitware_Mark.svg';
+import githubLogo from '~reslab/image/Github_Mark.svg';
+import contactIcon from '~reslab/image/contact.svg';
+import closeIcon from '~reslab/image/close.svg';
 
-import { action } from '../../../redux/action';
-import { store } from '../../../redux/store';
-import { appMode } from '../../../redux/reducer';
-import { initializeNewProject } from '../../../util';
+import { action } from '~reslab/redux/action';
+import { store } from '~reslab/redux/store';
+import { appMode } from '~reslab/redux/reducer';
+import { initializeNewProject } from '~reslab/util';
 
 import { logout } from 'girder/auth';
 

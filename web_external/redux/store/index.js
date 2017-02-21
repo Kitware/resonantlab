@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 
-import { reducer } from '../reducer';
+import { reducer } from '~reslab/redux/reducer';
 
 const store = createStore(reducer);
 

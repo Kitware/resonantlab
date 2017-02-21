@@ -83,6 +83,10 @@ module.exports = function (config, data) {
     }
   ].concat(config.module.loaders);
 
+  config.resolve = config.resolve || {};
+  config.resolve.alias = config.resolve.alias || {};
+  config.resolve.alias['~reslab'] = pluginSourceDir;
+
   generateColorTable(pluginSourceDir);
 
   return candelaWebpack(config, path.resolve(pluginSourceDir, '..', 'node_modules', 'candela'));

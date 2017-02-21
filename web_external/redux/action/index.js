@@ -1,4 +1,4 @@
-import { makeEnum } from '../../util';
+import { makeEnum } from '~reslab/util';
 import actionSpec from './actionspec.yml';
 
 const buildActionConstructor = (type, argSpec) => {
