@@ -3,3 +3,4 @@
 npm-debug.log
 git-sha
 node_modules/
+web_external/style/colors.json

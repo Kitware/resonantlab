@@ -4,6 +4,7 @@ import { appMode } from './redux/reducer';
 import { switchOverlay } from './util';
 
 import html from './index.jade';
+import svgFilters from './style/svgFilters.jade';
 import { initialize as initHeader } from './view/layout/header';
 import { initialize as initStartingScreen,
          render as renderStartingScreen } from './view/overlay/StartingScreen';
@@ -12,6 +13,8 @@ import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
 import './view/overlay/index.styl';
 import './index.styl';
 import './style/forms/index.css';
+
+import colors from './style/colors.json';
 
 // Instantiate the main application template.
 select('#app').html(html);
@@ -29,6 +32,9 @@ overlays.forEach(spec => spec[1](select('#overlay')
   .append('div')
   .classed('overlay', true)
   .classed(spec[0], true)));
+
+// Render color defs.
+select('#svg-filters').html(svgFilters({colors}));
 
 // Log state changes.
 observeStore(next => {
