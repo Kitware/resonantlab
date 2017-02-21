@@ -1,4 +1,5 @@
 *.sw*
 *.pyc
+npm-debug.log
 git-sha
 node_modules/
