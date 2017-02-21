@@ -1,5 +1,9 @@
 import { select } from 'd3-selection';
 
+import { action } from '../../../redux/action';
+import { appMode } from '../../../redux/reducer';
+import { store } from '../../../redux/store';
+
 import './index.styl';
 import html from './index.jade';
 import hamburgerIcon from './hamburger.svg';
@@ -17,16 +21,13 @@ const initialize = (sel) => {
   }));
 
   select('#aboutResLabHeaderButton').on('click', () => {
-    console.log('click #aboutResLabHeaderButton');
+    store.dispatch(action.switchMode(appMode.startScreen));
   });
   select('#hamburgerButton').on('click', () => {
     console.log('click #hamburgerButton');
   });
   select('#helpButton').on('click', () => {
     console.log('click #helpButton');
-  });
-  select('#aboutResLabHeaderButton').on('click', () => {
-    console.log('click #aboutResLabHeaderButton');
   });
   select('#projectVisibilityButton').on('click', () => {
     console.log('click #projectVisibilityButton');

@@ -56,6 +56,7 @@ observeStore(next => {
       break;
 
     case appMode.startScreen:
+      renderStartingScreen();
       switchOverlay('starting-screen');
       break;
   }
