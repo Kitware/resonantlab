@@ -51,6 +51,7 @@ const switchOverlay = (which) => {
 };
 
 const initializeNewProject = () => {
+  console.log('stub function: initializeNewProject');
   return Promise.resolve({
     name: 'Foobarius'
   });
