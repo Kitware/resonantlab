@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 
-import { makeEnum } from '../../util';
-import { actionType } from '../action';
+import { makeEnum } from '~reslab/util';
+import { actionType } from '~reslab/redux/action';
 
 const appMode = makeEnum('appMode', [
   'startScreen',

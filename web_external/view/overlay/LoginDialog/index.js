@@ -1,8 +1,8 @@
 import html from './index.jade';
 import './index.styl';
 
-import { action } from '../../../redux/action';
-import { store } from '../../../redux/store';
+import { action } from '~reslab/redux/action';
+import { store } from '~reslab/redux/store';
 
 import { login } from 'girder/auth';
 

@@ -1,16 +1,16 @@
 import { event,
          select } from 'd3-selection';
 
-import { action } from '../../../redux/action';
-import { appMode } from '../../../redux/reducer';
-import { store } from '../../../redux/store';
+import { action } from '~reslab/redux/action';
+import { appMode } from '~reslab/redux/reducer';
+import { store } from '~reslab/redux/store';
 
 import './index.styl';
 import html from './index.jade';
 import hamburgerIcon from './hamburger.svg';
 import infoIcon from './info.svg';
 import publicIcon from './public.svg';
-import reslabIcon from '../../../image/Resonant_Lab_cropped.svg';
+import reslabIcon from '~reslab/image/Resonant_Lab_cropped.svg';
 
 const initialize = (sel) => {
   sel.html(html({
