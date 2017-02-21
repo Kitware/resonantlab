@@ -38,7 +38,7 @@ const initialize = (sel) => {
     contactIcon,
     closeIcon,
     loggedIn
-	}));
+  }));
 
   sel.select('#empty-project-button')
     .on('click', () => {
@@ -55,7 +55,7 @@ const initialize = (sel) => {
   sel.select('span.logout-link').on('click', () => {
     logout().then(() => store.dispatch(action.logout()));
   });
-}
+};
 
 const render = () => {
   const loggedIn = !!store.getState().get('user');

@@ -1,6 +1,5 @@
 import { select } from 'd3-selection';
-import { store,
-         observeStore } from './redux/store';
+import { observeStore } from './redux/store';
 import { appMode } from './redux/reducer';
 import { switchOverlay } from './util';
 
