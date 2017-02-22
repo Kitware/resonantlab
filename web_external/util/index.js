@@ -53,11 +53,37 @@ const userInformation = (user) => {
 
 const currentUser = () => store.getState().getIn(['user', 'login']);
 
+const projectFolder = () => {
+  const state = store.getState();
+  return state.getIn(['user', 'public']) || state.getIn(['libPaths', 'publicScratchSpace']);
+};
+
 const initializeNewProject = () => {
-  console.log('stub function: initializeNewProject');
-  return Promise.resolve({
-    name: 'Foobarius'
-  });
+  const folder = projectFolder();
+
+  return restRequest({
+    type: 'POST',
+    path: '/item',
+    data: {
+      folderId: folder,
+      name: 'Untitled Project'
+    }
+  }).then(item => {
+    return restRequest({
+      type: 'PUT',
+      path: `/item/${item._id}/metadata`,
+      data: JSON.stringify({
+        datasets: [],
+        itemType: 'project',
+        matchings: [],
+        preferredWidgets: [],
+        visualizations: []
+      }),
+      contentType: 'application/json'
+    });
+  }).then(item => ({
+    name: item.name
+  }));
 };
 
 export {
