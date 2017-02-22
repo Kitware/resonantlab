@@ -43,7 +43,7 @@ const initialize = (sel) => {
     //
     // Grab the new name from the text field, and the original name from
     // application state.
-    const textField = select('#projectName')
+    const textField = select('#projectName');
     const newName = textField.text();
     const oldName = store.getState().getIn(['project', 'name']);
 
@@ -64,15 +64,15 @@ const initialize = (sel) => {
     // "save" the filename. By contract, the escape key normally blurs the
     // element, but we also want to "cancel" the editing operation first.
     switch (event.keyCode) {
-    case 13: // Enter key
-      select('#projectName').node().blur();
-      event.preventDefault();
-      break;
+      case 13: // Enter key
+        select('#projectName').node().blur();
+        event.preventDefault();
+        break;
 
-    case 27: // Escape key.
-      select('#projectName')
-        .text(store.getState().getIn(['project', 'name']));
-      break;
+      case 27: // Escape key.
+        select('#projectName')
+          .text(store.getState().getIn(['project', 'name']));
+        break;
     }
   });
 };

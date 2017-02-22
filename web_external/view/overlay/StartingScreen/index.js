@@ -18,12 +18,13 @@ import closeIcon from '~reslab/image/close.svg';
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';
 import { appMode } from '~reslab/redux/reducer';
-import { initializeNewProject } from '~reslab/util';
+import { initializeNewProject,
+         currentUser } from '~reslab/util';
 
 import { logout } from 'girder/auth';
 
 const initialize = (sel) => {
-  const loggedIn = !!store.getState().get('user');
+  const loggedIn = !!currentUser();
 
   sel.html(html({
     folderIcon,
@@ -61,7 +62,7 @@ const initialize = (sel) => {
 
 const render = () => {
   const state = store.getState();
-  const loggedIn = !!state.get('user');
+  const loggedIn = !!currentUser();
 
   let el = select('.overlay.starting-screen');
   el.select('span.logout-link')

@@ -5,6 +5,8 @@ lastMode: []
 
 login:
   - username
+  - private
+  - public
 
 logout: []
 
