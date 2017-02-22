@@ -17,7 +17,12 @@ const initial = Immutable.fromJS({
     private: null,
     public: null
   },
-  project: null
+  project: null,
+  libPaths: {
+    data: null,
+    projects: null,
+    publicScratchSpace: null
+  }
 });
 
 const reducer = (state = initial, action = {}) => {
@@ -66,6 +71,13 @@ const reducer = (state = initial, action = {}) => {
           .setIn(['project', 'name'], action.name);
       });
       break;
+
+    case actionType.setLibraryPaths:
+      newState = newState.withMutations(s => {
+        s.setIn(['libPaths', 'data'], action.data)
+          .setIn(['libPaths', 'projects'], action.projects)
+          .setIn(['libPaths', 'publicScratchSpace'], action.publicScratchSpace);
+      });
   }
 
   return newState;

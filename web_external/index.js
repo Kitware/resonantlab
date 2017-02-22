@@ -51,6 +51,22 @@ restRequest({
     store.dispatch(action.login(info.login, info.private, info.public));
   });
 
+// Find the library folder locations.
+let promises = ['Data', 'Projects', 'Public Scratch Space'].map(p => restRequest({
+  type: 'GET',
+  path: '/resource/lookup',
+  data: {
+    path: `/collection/Resonant Lab Library/${p}`
+  }
+}));
+
+Promise.all(promises).then(
+  resps => store.dispatch(action.setLibraryPaths(...resps.map(r => r._id))),
+  xhr => {
+    throw new Error('fatal: Resonant Lab Library collection doesn\'t exist, or Data, Projects, or Public Scratch Space folder is missing; contact your site administrator');
+  }
+);
+
 // Log state changes.
 observeStore(next => {
   console.log(next.toJS());

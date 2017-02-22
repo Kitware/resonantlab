@@ -12,3 +12,8 @@ logout: []
 
 openProject:
   - name
+
+setLibraryPaths:
+  - data
+  - projects
+  - publicScratchSpace
