@@ -68,8 +68,13 @@ const reducer = (state = initial, action = {}) => {
     case actionType.openProject:
       newState = newState.withMutations(s => {
         s.delete('project')
+          .setIn(['project', 'id'], action.id)
           .setIn(['project', 'name'], action.name);
       });
+      break;
+
+    case actionType.updateProjectName:
+      newState = newState.setIn(['project', 'name'], action.name);
       break;
 
     case actionType.setLibraryPaths:

@@ -4,6 +4,7 @@ import { event,
 import { action } from '~reslab/redux/action';
 import { appMode } from '~reslab/redux/reducer';
 import { store } from '~reslab/redux/store';
+import { updateProjectName } from '~reslab/util';
 
 import './index.styl';
 import html from './index.jade';
@@ -54,7 +55,12 @@ const initialize = (sel) => {
     } else if (newName !== oldName) {
       // Otherwise, as long as the name has changed, initiate a change to the
       // project item's name as well.
-      console.log('TODO: change project name');
+      const state = store.getState();
+      const projectId = state.getIn(['project', 'id']);
+      updateProjectName(projectId, newName).then(
+        item => store.dispatch(action.updateProjectName(item.name)),
+        xhr => console.error(`could not update name of project with id ${projectId}`)
+      );
     }
   });
 

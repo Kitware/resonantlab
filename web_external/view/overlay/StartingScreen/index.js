@@ -45,7 +45,7 @@ const initialize = (sel) => {
     .on('click', () => {
       initializeNewProject().then(project => {
         store.dispatch(action.switchMode(appMode.project));
-        store.dispatch(action.openProject(project.name));
+        store.dispatch(action.openProject(project.id, project.name));
       });
     });
 

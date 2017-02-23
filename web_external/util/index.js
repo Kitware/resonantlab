@@ -82,13 +82,25 @@ const initializeNewProject = () => {
       contentType: 'application/json'
     });
   }).then(item => ({
-    name: item.name
+    name: item.name,
+    id: item._id
   }));
+};
+
+const updateProjectName = (projectId, name) => {
+  return restRequest({
+    type: 'PUT',
+    path: `/item/${projectId}`,
+    data: {
+      name
+    }
+  });
 };
 
 export {
   switchOverlay,
   initializeNewProject,
   userInformation,
-  currentUser
+  currentUser,
+  updateProjectName
 };

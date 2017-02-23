@@ -11,6 +11,10 @@ login:
 logout: []
 
 openProject:
+  - id
+  - name
+
+updateProjectName:
   - name
 
 setLibraryPaths:
