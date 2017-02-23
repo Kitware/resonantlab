@@ -3,6 +3,7 @@ import './index.styl';
 
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';
+import { userInformation } from '~reslab/util';
 
 import { login } from 'girder/auth';
 
@@ -27,16 +28,14 @@ const initialize = (sel) => {
     const username = sel.select('#g-login').property('value');
     const password = sel.select('#g-password').property('value');
 
-    let promise = login(username, password);
-    promise.then(
-      resp => {
-        clear();
-        store.dispatch(action.login(resp.login));
-        store.dispatch(action.lastMode());
-      },
-      xhr => sel.select('.g-validation-failed-message')
+    login(username, password).then(userInformation, xhr =>
+      sel.select('.g-validation-failed-message')
         .text(xhr.responseJSON.message)
-    );
+    ).then(info => {
+      clear();
+      store.dispatch(action.login(info.login, info.private, info.public));
+      store.dispatch(action.lastMode());
+    });
   });
 };
 

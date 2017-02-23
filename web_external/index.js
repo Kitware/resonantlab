@@ -1,7 +1,13 @@
 import { select } from 'd3-selection';
-import { observeStore } from './redux/store';
+
+import { restRequest } from 'girder/rest';
+
+import { action } from './redux/action';
+import { store,
+         observeStore } from './redux/store';
 import { appMode } from './redux/reducer';
-import { switchOverlay } from './util';
+import { switchOverlay,
+         userInformation } from './util';
 
 import html from './index.jade';
 import svgFilters from './style/svgFilters.jade';
@@ -35,6 +41,31 @@ overlays.forEach(spec => spec[1](select('#overlay')
 
 // Render color defs.
 select('#svg-filters').html(svgFilters({colors}));
+
+// Check to see if a user is already logged in.
+restRequest({
+  type: 'GET',
+  path: '/user/me'
+}).then(userInformation)
+  .then(info => {
+    store.dispatch(action.login(info.login, info.private, info.public));
+  });
+
+// Find the library folder locations.
+let promises = ['Data', 'Projects', 'Public Scratch Space'].map(p => restRequest({
+  type: 'GET',
+  path: '/resource/lookup',
+  data: {
+    path: `/collection/Resonant Lab Library/${p}`
+  }
+}));
+
+Promise.all(promises).then(
+  resps => store.dispatch(action.setLibraryPaths(...resps.map(r => r._id))),
+  xhr => {
+    throw new Error('fatal: Resonant Lab Library collection doesn\'t exist, or Data, Projects, or Public Scratch Space folder is missing; contact your site administrator');
+  }
+);
 
 // Log state changes.
 observeStore(next => {

@@ -1,45 +1,8 @@
 import { select } from 'd3-selection';
-import Set from 'es6-set';
 
-let namespaces = new Set();
+import { restRequest } from 'girder/rest';
 
-const makeEnum = (ns, keys) => {
-  // Construct an object containing keys matching those passed in `keys`, whose
-  // values are the keys themselves, prefixed by the specified namespace.
-  //
-  // Dots are not allowed in the namespace name.
-  if (ns.indexOf('.') > -1) {
-    throw new Error('dots not allowed in namespace');
-  }
-
-  // Namespaces are not allowed to repeat.
-  if (namespaces.has(ns)) {
-    throw new Error(`duplicate namespace "${ns}"`);
-  }
-  namespaces.add(ns);
-
-  let obj = {};
-
-  let used = new Set();
-  keys.forEach((key) => {
-    if (key.indexOf('.') > -1) {
-      throw new Error('dots not allowed in key');
-    }
-
-    if (used.has(key)) {
-      throw new Error(`duplicate key "${key}"`);
-    }
-    used.add(key);
-
-    obj[key] = `${ns}.${key}`;
-  });
-
-  // Freeze the resulting object so no one else can alter the values or keys.
-  return Object.freeze(obj);
-};
-
-const enumName = (enumVal) => enumVal.split('.')[0];
-const enumValue = (enumVal) => enumVal.split('.')[1];
+import { store } from '~reslab/redux/store';
 
 const switchOverlay = (which) => {
   select('#overlay')
@@ -50,17 +13,94 @@ const switchOverlay = (which) => {
     });
 };
 
+const userInformation = (user) => {
+  if (user) {
+    // A user is logged in; find their public/private folders.
+    return restRequest({
+      type: 'GET',
+      path: '/folder',
+      data: {
+        parentType: 'user',
+        parentId: user._id
+      }
+    }).then(folders => {
+      let info = {
+        login: user.login
+      };
+
+      folders.forEach(folder => {
+        switch (folder.name) {
+          case 'Private':
+            info.private = folder._id;
+            break;
+
+          case 'Public':
+            info.public = folder._id;
+            break;
+        }
+      });
+
+      return info;
+    });
+  } else {
+    return Promise.resolve({
+      login: null,
+      private: null,
+      public: null
+    });
+  }
+};
+
+const currentUser = () => store.getState().getIn(['user', 'login']);
+
+const projectFolder = () => {
+  const state = store.getState();
+  return state.getIn(['user', 'public']) || state.getIn(['libPaths', 'publicScratchSpace']);
+};
+
 const initializeNewProject = () => {
-  console.log('stub function: initializeNewProject');
-  return Promise.resolve({
-    name: 'Foobarius'
+  const folder = projectFolder();
+
+  return restRequest({
+    type: 'POST',
+    path: '/item',
+    data: {
+      folderId: folder,
+      name: 'Untitled Project'
+    }
+  }).then(item => {
+    return restRequest({
+      type: 'PUT',
+      path: `/item/${item._id}/metadata`,
+      data: JSON.stringify({
+        datasets: [],
+        itemType: 'project',
+        matchings: [],
+        preferredWidgets: [],
+        visualizations: []
+      }),
+      contentType: 'application/json'
+    });
+  }).then(item => ({
+    name: item.name,
+    id: item._id
+  }));
+};
+
+const updateProjectName = (projectId, name) => {
+  return restRequest({
+    type: 'PUT',
+    path: `/item/${projectId}`,
+    data: {
+      name
+    }
   });
 };
 
 export {
-  makeEnum,
-  enumName,
-  enumValue,
   switchOverlay,
-  initializeNewProject
+  initializeNewProject,
+  userInformation,
+  currentUser,
+  updateProjectName
 };

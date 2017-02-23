@@ -5,8 +5,19 @@ lastMode: []
 
 login:
   - username
+  - private
+  - public
 
 logout: []
 
 openProject:
+  - id
   - name
+
+updateProjectName:
+  - name
+
+setLibraryPaths:
+  - data
+  - projects
+  - publicScratchSpace
