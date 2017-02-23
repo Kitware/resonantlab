@@ -50,7 +50,6 @@ const reducer = (state = initial, action = {}) => {
 
     case actionType.login:
       newState = newState.withMutations(s => {
-        console.log(s.toJS());
         s.setIn(['user', 'login'], action.username)
           .setIn(['user', 'public'], action.public)
           .setIn(['user', 'private'], action.private);
