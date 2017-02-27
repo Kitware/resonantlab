@@ -49,6 +49,10 @@ const initialize = (sel) => {
       });
     });
 
+  sel.select('#open-project-button').on('click', () => {
+    store.dispatch(action.switchMode(appMode.openProjectDialog));
+  });
+
   sel.select('span.login-link').on('click', () => {
     store.dispatch(action.switchMode(appMode.loginDialog));
   });

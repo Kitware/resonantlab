@@ -6,6 +6,7 @@ import { actionType } from '~reslab/redux/action';
 const appMode = makeEnum('appMode', [
   'startScreen',
   'loginDialog',
+  'openProjectDialog',
   'project'
 ]);
 

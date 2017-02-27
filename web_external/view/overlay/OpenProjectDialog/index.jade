@@ -1,0 +1,21 @@
+.large-dialog
+  img.close-overlay(src=closeIcon)
+  .main-chunk
+    .right-chunk
+      h1 Open Project
+      .subclass-content
+        details.private-projects.hideable(style="display: block;")
+          summary: h3 Your Private Projects
+          .project-list.circleset
+
+        details.public-projects.hideable(style="display: block;")
+          summary: h3 Your Public Projects
+          .project-list.circleset
+
+        details.scratch-projects.hideable(style="display: block;")
+          summary: h3 Your Public Scratch Space Projects
+          .project-list.circleset
+
+        details.library-projects.hideable(style="display: block;")
+          summary: h3 Public Project Library
+          .project-list.circleset
