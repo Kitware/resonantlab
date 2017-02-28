@@ -97,10 +97,32 @@ const updateProjectName = (projectId, name) => {
   });
 };
 
+const getProjects = (folderId) => {
+  if (folderId === null) {
+    return Promise.resolve([]);
+  }
+
+  return restRequest({
+    type: 'GET',
+    path: '/item',
+    data: {
+      folderId
+    }
+  }).then(items => items.filter(item => {
+    return item.meta && item.meta.itemType === 'project';
+  }));
+};
+
+const getLibraryProjects = () => {
+  return Promise.resolve([]);
+};
+
 export {
   switchOverlay,
   initializeNewProject,
   userInformation,
   currentUser,
-  updateProjectName
+  updateProjectName,
+  getProjects,
+  getLibraryProjects
 };

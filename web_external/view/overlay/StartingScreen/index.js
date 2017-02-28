@@ -18,8 +18,11 @@ import closeIcon from '~reslab/image/close.svg';
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';
 import { appMode } from '~reslab/redux/reducer';
+import { render as renderOpenProjectDialog } from '~reslab/view/overlay/OpenProjectDialog';
 import { initializeNewProject,
-         currentUser } from '~reslab/util';
+         currentUser,
+         getProjects,
+         getLibraryProjects } from '~reslab/util';
 
 import { logout } from 'girder/auth';
 
@@ -51,6 +54,14 @@ const initialize = (sel) => {
 
   sel.select('#open-project-button').on('click', () => {
     store.dispatch(action.switchMode(appMode.openProjectDialog));
+
+    const state = store.getState();
+    const publicProj = getProjects(state.getIn(['user', 'public']));
+    const privateProj = getProjects(state.getIn(['user', 'private']));
+    const scratchProj = getProjects(null);
+    const libraryProj = getLibraryProjects();
+
+    Promise.all([publicProj, privateProj, scratchProj, libraryProj]).then(proms => renderOpenProjectDialog(...proms));
   });
 
   sel.select('span.login-link').on('click', () => {
