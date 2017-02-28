@@ -58,6 +58,13 @@ const projectFolder = () => {
   return state.getIn(['user', 'public']) || state.getIn(['libPaths', 'publicScratchSpace']);
 };
 
+const gatherProjectInfo = (item) => {
+  return {
+    name: item.name,
+    id: item._id
+  };
+};
+
 const initializeNewProject = () => {
   const folder = projectFolder();
 
@@ -81,10 +88,7 @@ const initializeNewProject = () => {
       }),
       contentType: 'application/json'
     });
-  }).then(item => ({
-    name: item.name,
-    id: item._id
-  }));
+  }).then(gatherProjectInfo);
 };
 
 const updateProjectName = (projectId, name) => {
@@ -119,6 +123,7 @@ const getLibraryProjects = () => {
 
 export {
   switchOverlay,
+  gatherProjectInfo,
   initializeNewProject,
   userInformation,
   currentUser,

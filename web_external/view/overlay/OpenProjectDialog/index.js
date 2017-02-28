@@ -8,6 +8,8 @@ import publicFileIcon from '~reslab/image/publicFile.svg';
 
 import { store } from '~reslab/redux/store';
 import { action } from '~reslab/redux/action';
+import { appMode } from '~reslab/redux/reducer';
+import { gatherProjectInfo } from '~reslab/util';
 
 const initialize = (sel) => {
   sel.html(html({
@@ -31,7 +33,12 @@ const render = (publicProj, privateProj, scratchProj, libraryProj) => {
     .data(publicProj)
     .enter()
     .append('div')
-    .on('click', d => console.log(d))
+    .on('click', d => {
+      store.dispatch(action.switchMode(appMode.project));
+
+      const project = gatherProjectInfo(d);
+      store.dispatch(action.openProject(project.id, project.name));
+    })
     .classed('circle-button', true);
 
   icon.append('img')
