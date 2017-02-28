@@ -1,57 +1,55 @@
 @require '../../../style/colors.styl';
 
 .overlay
-  .main-chunk
-    display: flex;
+  .large-dialog
+    summary h3
+      display: inline-block;
+      cursor pointer
 
-  .large-dialog summary h3
-    display: inline-block;
+    .main-chunk
+      display: flex;
 
-  .left-chunk
-  .right-chunk
-    display: flex;
-    flex-direction: column;
+    .left-chunk
+      display: flex;
+      flex-direction: column;
+      min-width: 14em;
 
-  .right-chunk
-    flex-grow: 2;
-    position: relative;
-    top: 1em;
-    padding-bottom: 1em;
+      .menu-item
+        cursor: pointer;
+        padding: 0.5em 0em 0.5em 1em;
+        margin: 0em -1em;
+        line-height: 1.5em;
 
-  .left-chunk
-    min-width: 14em;
+      .disabled.menu-item
+        cursor: default;
+        color: $disabledColor;
 
-    h1
-      cursor: pointer;
+      .focused.menu-item
+        background-color: $darkRolloverColor;
+        color: $lightRolloverColor;
 
-    .menu-item
-      cursor: pointer;
-      padding: 0.5em 0em 0.5em 1em;
-      margin: 0em -1em;
-      line-height: 1.5em;
+      .clickable.menu-item:hover
+        background-color: $backgroundRolloverColor;
+        color: $darkRolloverColor;
 
-    .disabled.menu-item
-      cursor: default;
-      color: $disabledColor;
+    .right-chunk
+      display: flex;
+      flex-direction: column;
+      flex-grow: 2;
+      position: relative;
+      top: 1em;
+      padding-bottom: 1em;
 
-    .focused.menu-item
-      background-color: $darkRolloverColor;
-      color: $lightRolloverColor;
+    .login-links
+      position: absolute;
+      top: 1.5em;
+      right: 4em;
 
-    .clickable.menu-item:hover
-      background-color: $backgroundRolloverColor;
-      color: $darkRolloverColor;
-
-  .login-links
-    position: absolute;
-    top: 1.5em;
-    right: 4em;
-
-  div.circle-button img.badge
-    position: absolute;
-    width: 1em;
-    height: 1em;
-    right: 2.25em;
-    bottom: 3.25em;
-    -webkit-filter: imgColorFilter($warningIconColor);
-    filter: imgColorFilter($warningIconColor);
+    div.circle-button img.badge
+      position: absolute;
+      width: 1em;
+      height: 1em;
+      right: 2.25em;
+      bottom: 3.25em;
+      -webkit-filter: imgColorFilter($warningIconColor);
+      filter: imgColorFilter($warningIconColor);
