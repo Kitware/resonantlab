@@ -6,6 +6,7 @@ import { actionType } from '~reslab/redux/action';
 const appMode = makeEnum('appMode', [
   'startScreen',
   'loginDialog',
+  'openProjectDialog',
   'project'
 ]);
 
@@ -50,7 +51,6 @@ const reducer = (state = initial, action = {}) => {
 
     case actionType.login:
       newState = newState.withMutations(s => {
-        console.log(s.toJS());
         s.setIn(['user', 'login'], action.username)
           .setIn(['user', 'public'], action.public)
           .setIn(['user', 'private'], action.private);

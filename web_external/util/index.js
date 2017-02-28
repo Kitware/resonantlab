@@ -58,6 +58,13 @@ const projectFolder = () => {
   return state.getIn(['user', 'public']) || state.getIn(['libPaths', 'publicScratchSpace']);
 };
 
+const gatherProjectInfo = (item) => {
+  return {
+    name: item.name,
+    id: item._id
+  };
+};
+
 const initializeNewProject = () => {
   const folder = projectFolder();
 
@@ -81,10 +88,7 @@ const initializeNewProject = () => {
       }),
       contentType: 'application/json'
     });
-  }).then(item => ({
-    name: item.name,
-    id: item._id
-  }));
+  }).then(gatherProjectInfo);
 };
 
 const updateProjectName = (projectId, name) => {
@@ -97,10 +101,28 @@ const updateProjectName = (projectId, name) => {
   });
 };
 
+const getProjects = (folderId) => {
+  if (folderId === null) {
+    return Promise.resolve([]);
+  }
+
+  return restRequest({
+    type: 'GET',
+    path: '/item',
+    data: {
+      folderId
+    }
+  }).then(items => items.filter(item => {
+    return item.meta && item.meta.itemType === 'project';
+  }));
+};
+
 export {
   switchOverlay,
+  gatherProjectInfo,
   initializeNewProject,
   userInformation,
   currentUser,
-  updateProjectName
+  updateProjectName,
+  getProjects
 };

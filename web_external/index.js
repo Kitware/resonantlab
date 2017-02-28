@@ -15,6 +15,7 @@ import { initialize as initHeader } from './view/layout/header';
 import { initialize as initStartingScreen,
          render as renderStartingScreen } from './view/overlay/StartingScreen';
 import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
+import { initialize as initOpenProjectDialog } from './view/overlay/OpenProjectDialog';
 
 import './view/overlay/index.styl';
 import './index.styl';
@@ -31,7 +32,8 @@ initHeader(select('#header'));
 // Instantiate the overlays.
 const overlays = [
   ['starting-screen', initStartingScreen],
-  ['login-dialog', initLoginDialog]
+  ['login-dialog', initLoginDialog],
+  ['open-project-dialog', initOpenProjectDialog]
 ];
 
 overlays.forEach(spec => spec[1](select('#overlay')
@@ -89,6 +91,10 @@ observeStore(next => {
     case appMode.startScreen:
       renderStartingScreen();
       switchOverlay('starting-screen');
+      break;
+
+    case appMode.openProjectDialog:
+      switchOverlay('open-project-dialog');
       break;
   }
 }, s => s.get('mode'));
