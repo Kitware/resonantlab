@@ -52,13 +52,14 @@ const initialize = (sel) => {
     });
 
   sel.select('#open-project-button').on('click', () => {
-    store.dispatch(action.switchMode(appMode.openProjectDialog));
-
     const state = store.getState();
     const publicProj = getProjects(state.getIn(['user', 'public']));
     const privateProj = getProjects(state.getIn(['user', 'private']));
 
-    Promise.all([publicProj, privateProj]).then(proms => renderOpenProjectDialog(...proms));
+    Promise.all([publicProj, privateProj]).then(proms => {
+      renderOpenProjectDialog(...proms);
+      store.dispatch(action.switchMode(appMode.openProjectDialog));
+    });
   });
 
   sel.select('span.login-link').on('click', () => {
