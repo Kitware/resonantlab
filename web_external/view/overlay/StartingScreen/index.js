@@ -68,7 +68,7 @@ const initialize = (sel) => {
     logout().then(() => store.dispatch(action.logout()));
   });
 
-  sel.select('#close-overlay').on('click', () => store.dispatch(action.lastMode()));
+  sel.select('.close-overlay').on('click', () => store.dispatch(action.lastMode()));
 };
 
 const render = () => {
@@ -84,7 +84,7 @@ const render = () => {
   // Only display the "close" button if the starting screen was invoked from a
   // different part of the app.
   const showClose = state.get('mode') !== state.get('lastMode');
-  el.select('#close-overlay')
+  el.select('.close-overlay')
     .style('display', showClose ? null : 'none');
 };
 
