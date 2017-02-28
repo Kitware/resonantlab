@@ -5,8 +5,6 @@ import './index.styl';
 
 import folderIcon from '~reslab/image/light/folder.svg';
 import fileIcon from '~reslab/image/light/file.svg';
-import scatterplotIcon from '~reslab/image/light/scatterplot.svg';
-import datasetIcon from '~reslab/image/light/dataset.svg';
 import reslabBanner from '~reslab/image/Resonant_Lab_cropped.svg';
 import reslabLogo from '~reslab/image/Resonant_Lab_Mark.svg';
 import resonantLogo from '~reslab/image/Resonant_Mark.svg';
@@ -31,8 +29,6 @@ const initialize = (sel) => {
   sel.html(html({
     folderIcon,
     fileIcon,
-    scatterplotIcon,
-    datasetIcon,
     reslabBanner,
     reslabLogo,
     resonantLogo,
