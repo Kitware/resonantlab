@@ -20,7 +20,7 @@ const initialize = (sel) => {
     .on('click', () => store.dispatch(action.lastMode()));
 };
 
-const render = (publicProj, privateProj, scratchProj, libraryProj) => {
+const render = (publicProj, privateProj) => {
   const main = select('.overlay.open-project-dialog');
   let sel = main.select('.public-projects')
     .select('.project-list')

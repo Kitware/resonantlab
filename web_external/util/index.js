@@ -117,10 +117,6 @@ const getProjects = (folderId) => {
   }));
 };
 
-const getLibraryProjects = () => {
-  return Promise.resolve([]);
-};
-
 export {
   switchOverlay,
   gatherProjectInfo,
@@ -128,6 +124,5 @@ export {
   userInformation,
   currentUser,
   updateProjectName,
-  getProjects,
-  getLibraryProjects
+  getProjects
 };
