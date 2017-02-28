@@ -1,6 +1,8 @@
 import { select } from 'd3-selection';
 
 import html from './index.jade';
+
+import '~reslab/view/overlay/index.styl';
 import './index.styl';
 
 import folderIcon from '~reslab/image/light/folder.svg';
@@ -39,7 +41,7 @@ const initialize = (sel) => {
     loggedIn
   }));
 
-  sel.select('#empty-project-button')
+  sel.select('.new-project')
     .on('click', () => {
       initializeNewProject().then(project => {
         store.dispatch(action.switchMode(appMode.project));
@@ -47,7 +49,7 @@ const initialize = (sel) => {
       });
     });
 
-  sel.select('#open-project-button').on('click', () => {
+  sel.select('.open-project').on('click', () => {
     const state = store.getState();
     const publicProj = getProjects(state.getIn(['user', 'public']));
     const privateProj = getProjects(state.getIn(['user', 'private']));

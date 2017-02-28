@@ -1,17 +1,14 @@
-#starting-screen
-  #new-project-buttons.circleset
-    #open-project-button.circle-button
-      img(src=folderIcon)
-      span Open a project
+.large-dialog.starting-screen
+  .main-chunk
+    .left-chunk
+      img.h1-logo(src=reslabBanner)
+      .side-menu
+        .menu-item.new-project.clickable New Project
+        .menu-item.open-project.clickable Open Project
 
-    #empty-project-button.circle-button
-      img(src=fileIcon)
-      span Create an empty project
+    .divider
 
-  #welcome-section
-    img#logo(src=reslabBanner)
-
-    #text-wall
+    .right-chunk.welcome-section
       .text-chunk
         p.
           Resonant Lab is a #[strong beta] tool under active development
