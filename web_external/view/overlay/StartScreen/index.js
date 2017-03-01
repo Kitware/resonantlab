@@ -80,7 +80,7 @@ const render = () => {
   const loggedIn = !!currentUser();
   const username = state.getIn(['user', 'login']);
 
-  const el = select('.overlay.starting-screen');
+  const el = select('.overlay.start-screen');
 
   // Display "logout" or "login/register" depending on login state.
   el.select('.log-out')
@@ -100,7 +100,7 @@ const render = () => {
     .classed('disabled', !loggedIn)
     .classed('clickable', loggedIn);
 
-  // Only display the "close" button if the starting screen was invoked from a
+  // Only display the "close" button if the start screen was invoked from a
   // different part of the app.
   const showClose = state.get('mode') !== state.get('lastMode');
   el.select('.close-overlay')
