@@ -9,6 +9,9 @@ import { appMode } from './redux/reducer';
 import { switchOverlay,
          userInformation } from './util';
 
+import publicIcon from './view/layout/header/public.svg';
+import privateIcon from './view/layout/header/private.svg';
+
 import html from './index.jade';
 import svgFilters from './style/svgFilters.jade';
 import { initialize as initHeader } from './view/layout/header';
@@ -112,5 +115,9 @@ observeStore(next => {
   if (project) {
     select('#projectName')
       .text(project.get('name'));
+
+    select('#header')
+      .select('.project-visibility')
+      .attr('src', project.get('visibility') === 'public' ? publicIcon : privateIcon);
   }
 }, s => s.get('project'));

@@ -13,6 +13,7 @@ logout: []
 openProject:
   - id
   - name
+  - visibility
 
 updateProjectName:
   - name

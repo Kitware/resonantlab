@@ -34,8 +34,8 @@ const initialize = (sel) => {
     console.log('click #helpButton');
   });
 
-  select('#projectVisibilityButton').on('click', () => {
-    console.log('click #projectVisibilityButton');
+  select('.project-visibility').on('click', () => {
+    console.log('click .project-visibility');
   });
 
   select('#projectName').on('blur', () => {
