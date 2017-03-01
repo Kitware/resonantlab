@@ -43,21 +43,25 @@ const initialize = (sel) => {
 
   sel.select('.new-project')
     .on('click', () => {
-      initializeNewProject().then(project => {
-        store.dispatch(action.switchMode(appMode.project));
-        store.dispatch(action.openProject(project.id, project.name));
-      });
+      if (currentUser()) {
+        initializeNewProject().then(project => {
+          store.dispatch(action.switchMode(appMode.project));
+          store.dispatch(action.openProject(project.id, project.name));
+        });
+      }
     });
 
   sel.select('.open-project').on('click', () => {
-    const state = store.getState();
-    const publicProj = getProjects(state.getIn(['user', 'public']));
-    const privateProj = getProjects(state.getIn(['user', 'private']));
+    if (currentUser()) {
+      const state = store.getState();
+      const publicProj = getProjects(state.getIn(['user', 'public']));
+      const privateProj = getProjects(state.getIn(['user', 'private']));
 
-    Promise.all([publicProj, privateProj]).then(proms => {
-      renderOpenProjectDialog(...proms);
-      store.dispatch(action.switchMode(appMode.openProjectDialog));
-    });
+      Promise.all([publicProj, privateProj]).then(proms => {
+        renderOpenProjectDialog(...proms);
+        store.dispatch(action.switchMode(appMode.openProjectDialog));
+      });
+    }
   });
 
   sel.select('.log-in').on('click', () => {
@@ -75,11 +79,18 @@ const render = () => {
   const state = store.getState();
   const loggedIn = !!currentUser();
 
-  let el = select('.overlay.starting-screen');
+  const el = select('.overlay.starting-screen');
+
+  // Display "logout" or "login/register" depending on login state.
   el.select('.log-out')
     .style('display', loggedIn ? null : 'none');
   el.selectAll('.log-in, .register')
     .style('display', loggedIn ? 'none' : null);
+
+  // Gray out the new project / open project options if not logged in.
+  el.selectAll('.new-project, .open-project')
+    .classed('disabled', !loggedIn)
+    .classed('clickable', loggedIn);
 
   // Only display the "close" button if the starting screen was invoked from a
   // different part of the app.
