@@ -78,12 +78,20 @@ const initialize = (sel) => {
 const render = () => {
   const state = store.getState();
   const loggedIn = !!currentUser();
+  const username = state.getIn(['user', 'login']);
 
   const el = select('.overlay.starting-screen');
 
   // Display "logout" or "login/register" depending on login state.
   el.select('.log-out')
-    .style('display', loggedIn ? null : 'none');
+    .style('display', loggedIn ? null : 'none')
+    .text(() => {
+      if (username) {
+        return `Log out (${username})`;
+      } else {
+        return 'Log out';
+      }
+    });
   el.selectAll('.log-in, .register')
     .style('display', loggedIn ? 'none' : null);
 
