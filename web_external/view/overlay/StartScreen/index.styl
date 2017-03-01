@@ -1,0 +1,38 @@
+@require '../../../style/colors.styl';
+
+#overlay
+  .start-screen
+    .login-links
+      position absolute
+      top 1.5em
+      right 4em
+
+    .h1-logo
+      height 40px
+      margin-top 21.440px
+
+    .welcome-section
+      .text-chunk
+        position: relative;
+
+        img
+          position absolute;
+          top calc(50% - 1.5em)
+          width 3em
+          height 3em
+
+        p
+          max-width 30em
+          text-align justify
+
+      .text-chunk:nth-child(odd) img
+        left 31em
+
+      .text-chunk:nth-child(even) p
+        position relative;
+        left 4em;
+
+    img.line-height
+      position relative
+      top 6px
+      height 24px

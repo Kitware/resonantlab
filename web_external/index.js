@@ -12,8 +12,8 @@ import { switchOverlay,
 import html from './index.jade';
 import svgFilters from './style/svgFilters.jade';
 import { initialize as initHeader } from './view/layout/header';
-import { initialize as initStartingScreen,
-         render as renderStartingScreen } from './view/overlay/StartingScreen';
+import { initialize as initStartScreen,
+         render as renderStartScreen } from './view/overlay/StartScreen';
 import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
 import { initialize as initOpenProjectDialog } from './view/overlay/OpenProjectDialog';
 
@@ -31,7 +31,7 @@ initHeader(select('#header'));
 
 // Instantiate the overlays.
 const overlays = [
-  ['starting-screen', initStartingScreen],
+  ['start-screen', initStartScreen],
   ['login-dialog', initLoginDialog],
   ['open-project-dialog', initOpenProjectDialog]
 ];
@@ -89,8 +89,8 @@ observeStore(next => {
       break;
 
     case appMode.startScreen:
-      renderStartingScreen();
-      switchOverlay('starting-screen');
+      renderStartScreen();
+      switchOverlay('start-screen');
       break;
 
     case appMode.openProjectDialog:
@@ -101,7 +101,7 @@ observeStore(next => {
 
 // Update start screen with login/logout changes.
 observeStore(
-  next => renderStartingScreen(),
+  next => renderStartScreen(),
   s => s.get('user')
 );
 
