@@ -60,11 +60,11 @@ const initialize = (sel) => {
     });
   });
 
-  sel.select('span.login-link').on('click', () => {
+  sel.select('.log-in').on('click', () => {
     store.dispatch(action.switchMode(appMode.loginDialog));
   });
 
-  sel.select('span.logout-link').on('click', () => {
+  sel.select('.log-out').on('click', () => {
     logout().then(() => store.dispatch(action.logout()));
   });
 
@@ -76,9 +76,9 @@ const render = () => {
   const loggedIn = !!currentUser();
 
   let el = select('.overlay.starting-screen');
-  el.select('span.logout-link')
+  el.select('.log-out')
     .style('display', loggedIn ? null : 'none');
-  el.select('span.login-link')
+  el.selectAll('.log-in, .register')
     .style('display', loggedIn ? 'none' : null);
 
   // Only display the "close" button if the starting screen was invoked from a
