@@ -45,7 +45,7 @@ const showProjects = (main, selector, projects, fileIcon) => {
       store.dispatch(action.switchMode(appMode.project));
 
       const project = gatherProjectInfo(d);
-      store.dispatch(action.openProject(project.id, project.name));
+      store.dispatch(action.openProject(project.id, project.name, project.visibility));
     })
     .classed('circle-button', true);
 

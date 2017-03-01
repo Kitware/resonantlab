@@ -69,7 +69,8 @@ const reducer = (state = initial, action = {}) => {
       newState = newState.withMutations(s => {
         s.delete('project')
           .setIn(['project', 'id'], action.id)
-          .setIn(['project', 'name'], action.name);
+          .setIn(['project', 'name'], action.name)
+          .setIn(['project', 'visibility'], action.visibility);
       });
       break;
 

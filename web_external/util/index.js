@@ -59,9 +59,12 @@ const projectFolder = () => {
 };
 
 const gatherProjectInfo = (item) => {
+  const state = store.getState();
+
   return {
     name: item.name,
-    id: item._id
+    id: item._id,
+    visibility: item.folderId === state.getIn(['user', 'public']) ? 'public' : 'private'
   };
 };
 
