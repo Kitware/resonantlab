@@ -1,8 +1,6 @@
 import { select } from 'd3-selection';
 
 import html from './index.jade';
-import '../accordion.styl';
-import '../index.styl';
 import './index.styl';
 
 import noDataset from '~reslab/image/noDataset.svg';

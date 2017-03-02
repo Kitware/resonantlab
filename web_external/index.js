@@ -24,6 +24,8 @@ import { datasetPanel } from './view/panel/DatasetPanel';
 
 import './view/overlay/index.styl';
 import './index.styl';
+import './view/panel/index.styl';
+import './style/accordion.styl';
 import './style/forms/index.css';
 
 import colors from './style/colors.json';
