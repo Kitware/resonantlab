@@ -19,6 +19,7 @@ import { initialize as initStartScreen,
          render as renderStartScreen } from './view/overlay/StartScreen';
 import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
 import { initialize as initOpenProjectDialog } from './view/overlay/OpenProjectDialog';
+import { datasetPanel } from './view/panel/DatasetPanel';
 
 import './view/overlay/index.styl';
 import './index.styl';
@@ -46,6 +47,9 @@ overlays.forEach(spec => spec[1](select('#overlay')
 
 // Render color defs.
 select('#svg-filters').html(svgFilters({colors}));
+
+// Initialize the dataset panel.
+datasetPanel.initialize('#dataset-panel');
 
 // Check to see if a user is already logged in.
 restRequest({
@@ -75,6 +79,8 @@ Promise.all(promises).then(
 // Log state changes.
 observeStore(next => {
   console.log(next.toJS());
+
+  datasetPanel.render();
 });
 
 // Render state changes.

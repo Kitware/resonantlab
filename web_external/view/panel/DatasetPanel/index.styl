@@ -1,0 +1,48 @@
+@require '../../../style/colors.styl';
+
+.dataset-view.content
+  display: flex;
+  flex-direction: column;
+
+  .dataset-overview
+    width: calc(100% - 2em);
+    font-weight: 700;
+    padding: 1em;
+
+  img.button
+  image.button
+    -webkit-filter: imgColorFilter($defaultDarkIconColor);
+    filter: imgColorFilter($defaultDarkIconColor);
+
+  img.button.overridden
+  image.button.overridden
+    -webkit-filter: imgColorFilter($overriddenIconColor);
+    filter: imgColorFilter($overriddenIconColor);
+
+  img.button:hover
+  image.button:hover
+    cursor: pointer;
+    -webkit-filter: imgColorFilter($darkRolloverColor);
+    filter: imgColorFilter($darkRolloverColor);
+
+  img.button.disabled
+  image.button.disabled
+    cursor: default;
+    -webkit-filter: imgColorFilter($disabledColor);
+    filter: imgColorFilter($disabledColor);
+
+  .no-dataset
+    position: absolute;
+    top: 0em;
+    right: 0em;
+    margin: 1em;
+    max-width: 20em;
+
+  .overview
+    fill: $dataOverviewColor;
+
+  .filtered
+    fill: $dataFilteredColor;
+
+  .page
+    fill: $dataCurrentPageColor;
