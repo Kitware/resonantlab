@@ -28,8 +28,6 @@ const render = (publicProj, privateProj) => {
 };
 
 const showProjects = (main, selector, projects, fileIcon) => {
-  console.log(projects);
-
   const sel = main.select(selector)
     .style('display', projects.length > 0 ? null : 'none')
     .select('.project-list');
