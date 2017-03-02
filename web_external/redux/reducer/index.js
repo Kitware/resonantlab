@@ -23,6 +23,17 @@ const initial = Immutable.fromJS({
     data: null,
     projects: null,
     publicScratchSpace: null
+  },
+  panel: {
+    dataset: {
+      open: false
+    },
+    matching: {
+      open: false
+    },
+    vis: {
+      open: false
+    }
   }
 });
 
@@ -84,6 +95,12 @@ const reducer = (state = initial, action = {}) => {
           .setIn(['libPaths', 'projects'], action.projects)
           .setIn(['libPaths', 'publicScratchSpace'], action.publicScratchSpace);
       });
+      break;
+
+    case actionType.togglePanel:
+      const seq = ['panel', action.panel, 'open'];
+      newState = newState.setIn(seq, !newState.getIn(seq));
+      break;
   }
 
   return newState;

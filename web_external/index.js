@@ -1,4 +1,5 @@
-import { select } from 'd3-selection';
+import { select,
+         selectAll } from 'd3-selection';
 
 import { restRequest } from 'girder/rest';
 
@@ -19,9 +20,14 @@ import { initialize as initStartScreen,
          render as renderStartScreen } from './view/overlay/StartScreen';
 import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
 import { initialize as initOpenProjectDialog } from './view/overlay/OpenProjectDialog';
+import { datasetPanel } from './view/panel/DatasetPanel';
+import { matchingPanel } from './view/panel/MatchingPanel';
+import { visPanel } from './view/panel/VisPanel';
 
 import './view/overlay/index.styl';
 import './index.styl';
+import './view/panel/index.styl';
+import './style/accordion.styl';
 import './style/forms/index.css';
 
 import colors from './style/colors.json';
@@ -46,6 +52,11 @@ overlays.forEach(spec => spec[1](select('#overlay')
 
 // Render color defs.
 select('#svg-filters').html(svgFilters({colors}));
+
+// Initialize the dataset panel.
+datasetPanel.initialize('#dataset-panel');
+matchingPanel.initialize('#matching-panel');
+visPanel.initialize('#vis-panel');
 
 // Check to see if a user is already logged in.
 restRequest({
@@ -121,3 +132,19 @@ observeStore(next => {
       .attr('src', project.get('visibility') === 'public' ? publicIcon : privateIcon);
   }
 }, s => s.get('project'));
+
+// Resize the panels.
+observeStore(next => {
+  const panels = next.get('panel').toJS();
+
+  const numOpen = Object.values(panels).filter(p => p.open).length;
+  const numClosed = Object.keys(panels).length - numOpen;
+
+  const style = `calc((100% - (0.5em + 2.5*${numClosed}em + 0.5*${numOpen}em)) / ${numOpen})`;
+
+  selectAll('section')
+    .style('width', null);
+
+  selectAll('section.targeted')
+    .style('width', style);
+}, s => s.get('panel'));

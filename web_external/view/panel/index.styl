@@ -1,0 +1,66 @@
+@require '../../style/colors.styl';
+
+#widget-panels
+  position: absolute;
+  width: 100%;
+  top: 3em;
+  bottom: 0px;
+
+  .section-header
+    h2
+      font-size: 0.75em;
+      letter-spacing: 1px;
+      margin: 0em 0.5em;
+      color: $lightTextColor;
+
+    img
+      width: 1em;
+      height: 1em;
+      margin: 0em 0.25em;
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+
+      -webkit-filter: imgColorFilter($defaultLightIconColor);
+      filter: imgColorFilter($defaultLightIconColor);
+
+    img.new
+      -webkit-filter: imgColorFilter($newInfoIconColor);
+      filter: imgColorFilter($newInfoIconColor);
+
+    img.loading
+      -webkit-filter: none;
+      filter: none;
+
+    img.okay
+      -webkit-filter: imgColorFilter($successIconColor);
+      filter: imgColorFilter($successIconColor);
+
+    img.warning
+      -webkit-filter: imgColorFilter($warningIconColor);
+      filter: imgColorFilter($warningIconColor);
+
+    img:hover
+      -webkit-filter: imgColorFilter($lightRolloverColor) url(#dropHalo);
+      filter: imgColorFilter($lightRolloverColor) url(#dropHalo);
+
+    img.disabled
+      opacity: 0.25;
+      cursor: default;
+
+    img.disabled:hover
+      -webkit-filter: none;
+      filter: none;
+
+    .indicator-text img:hover
+      -webkit-filter: opacity(100%);
+      filter: opacity(100%);
+
+  .targeted .section-header img
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);

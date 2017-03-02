@@ -1,0 +1,57 @@
+.section-header
+  .title-section
+    img(src=datasetIcon)
+    h2.title No Dataset Loaded
+
+  .indicators
+    .indicator-icons
+      img(src=swapIcon title="Click to select a different dataset")
+      img.disabled(src=gearIcon title="Dataset filter and paging settings")
+      img.new(src=infoIcon title="About this panel")
+      img.warning(src=warningIcon title="Something isn't quite right; click for details")
+
+.content
+  img.no-dataset.empty-state-helper(src=noDataset style="display: none;")
+
+  div.dataset-overview(style="display: none;")
+    svg
+      g.connector
+      g.filter-pie
+      g.paging
+        g.paging-bars
+        g.paging-buttons
+          image.button.seek-first(x="-3.5em" height="1em" width="1em")
+          image.button.seek-prev(x="-1.5em" height="1em" width="1em")
+          image.button.seek-next(x="0.5em" height="1em" width="1em")
+          image.button.seek-last(x="2.5em" height="1em" width="1em")
+
+      g.labels
+        text
+          Visualizing all #[tspan.page 10] items in the dataset.
+
+        text.has-paging.
+          Visualizing items #[tspan.page 0 - 10] of #[tspan.filtered 100] total
+          items.
+
+        text.has-filters.
+          Visualizing #[tspan.filtered 100] items of the #[tspan.overview 1000]
+          total items in the dataset.
+
+        text.has-paging.has-filters.
+          Visualizing items #[tspan.page 0 - 10] of #[tspan.filtered 100] filtered
+          items. There are #[tspan.overview 1000] total items in the dataset
+          (ignoring filters).
+
+      g.preview-switch
+        image.button.histogram-preview-icon(y="-3em" height="1em" width="1em")
+        image.button.table-switch-icon(y="-1em" height="2em" width="1em")
+        image.button.table-preview-icon(y="2em" height="1em" width="1em")
+
+  .histogram-preview(style="display: none;")
+
+  .table-preview(style="display: none;")
+    .data-table-container
+      table.data-table
+        tbody
+    div.data-table-headers
+      .table-header.row-header

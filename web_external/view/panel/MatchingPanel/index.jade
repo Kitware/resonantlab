@@ -1,0 +1,17 @@
+.section-header
+  .title-section
+    img(src=matchingIcon)
+    h2.title(title="There are no required visual encodings") Matching --
+
+  .indicators
+    .indicator-icons
+      img.new(src=infoIcon title="About this panel")
+      img.warning(src=warningIcon title="Something isn't quite right; click for details")
+
+.content
+  img.matching-no-dataset.empty-state-helper(src=matchingNoDataset style="display: none;")
+  img.matching-no-vis.empty-state-helper(src=matchingNoVis style="display: none;")
+
+  svg
+    g.link-layer
+    g.node-layer

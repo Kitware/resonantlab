@@ -1,0 +1,205 @@
+@require '../../../style/colors.styl';
+
+#matching-panel .content
+  overflow: auto;
+
+  .matching-no-dataset
+    position: absolute;
+    top: 0em;
+    left: 0em;
+    margin: 1em;
+    max-width: 20em;
+
+  .matching-no-vis
+    position: absolute;
+    bottom: 0em;
+    right: 0em;
+    margin: 1em;
+    max-width: 20em;
+
+  /* default node, edge styling */
+
+  .node
+    cursor: pointer;
+
+    rect.node-background
+      fill: $matchingNodeBackgroundColor;
+      stroke: $matchingNodeBackgroundColor;
+      stroke-width: 5px;
+      rx: 5px;
+      ry: 5px;
+
+    text
+      font-size: 12pt;
+      font-weight: bold;
+      fill: $matchingNodeColor;
+
+    image
+      width: 1em;
+      height: 1em;
+      -webkit-filter: imgColorFilter($matchingNodeColor);
+      filter: imgColorFilter($matchingNodeColor);
+
+  .node.data
+    image
+      y: -0.5em;
+
+  .node.vis
+    image
+      y: 0.25em;
+
+  .edge
+    path
+      fill: none;
+
+    path.ghost-path
+      stroke: transparent;
+      stroke-width: 20px;
+
+  /* connectionStats (i.e. the the bubble) */
+
+  .node .connection-stats
+    path.stats-background
+      stroke-width: 5px;
+
+    text
+      font-size: 0.75em;
+      letter-spacing: 1px;
+
+  .node .connection-stats.optional
+    path.stats-background
+      fill: $matchingOptionalColor;
+      stroke: $matchingOptionalColor;
+
+    text
+      fill: $matchingOptionalTextColor;
+
+  .node .connection-stats.satisfied
+    path.stats-background
+      fill: $matchingSuccessColor;
+      stroke: $matchingSuccessColor;
+
+    text
+      fill: $matchingSuccessTextColor;
+
+  .node .connection-stats.not-satisfied
+    path.stats-background
+      fill: $matchingWarningColor;
+      stroke: $matchingWarningColor;
+
+    text
+      fill: $matchingWarningTextColor;
+
+  /* interaction state: node is hovered (will change selection) */
+  .node.hovered
+    rect.node-background
+      fill: $matchingCreateLinkBackgroundColor;
+      stroke: $matchingCreateLinkColor;
+
+    image
+      -webkit-filter: imgColorFilter($matchingCreateLinkColor);
+      filter: imgColorFilter($matchingCreateLinkColor);
+
+  .node.hovered > text
+    fill: $matchingCreateLinkColor;
+
+  /* interaction state: node can't be connected */
+  .node.ineligible
+    cursor: not-allowed;
+
+    rect.node-background
+      fill: $disabledColor;
+      stroke: none;
+
+    image
+      -webkit-filter: imgColorFilter($lightDisabledColor);
+      filter: imgColorFilter($lightDisabledColor);
+
+  .node.ineligible > text
+    fill: $lightDisabledColor;
+
+  /* interaction state: node can be connected */
+  .node.connectable
+    rect.node-background
+      fill: $matchingCreateLinkBackgroundColor;
+      stroke: none;
+
+    image
+      -webkit-filter: imgColorFilter($matchingCreateLinkColor);
+      filter: imgColorFilter($matchingCreateLinkColor);
+
+  .node.connectable > text
+    fill: $matchingCreateLinkColor;
+
+  .potential.edge
+    path.visiblePath
+      stroke-dasharray: 5, 5;
+      stroke-width: 5px;
+      stroke: $matchingCreateLinkBackgroundColor;
+
+  /* interaction state: node is about to be connected */
+  .node.connectable.hovered rect.node-background
+  .potential.edge.hovered path.visible-path
+    stroke: $matchingCreateLinkColor;
+    stroke-width: 5px;
+    stroke-dasharray: none;
+
+  /* interaction state: link exists, but is not involved
+     in any current interaction */
+  .established.edge path.visible-path
+    stroke-width: 3px;
+    stroke: $matchingExistingLinkBackgroundColor;
+
+  /* interaction state: node is selected */
+  .node.selected
+    rect.node-background
+      fill: $matchingExistingLinkBackgroundColor;
+
+    image
+      -webkit-filter: imgColorFilter($matchingExistingLinkColor);
+      filter: imgColorFilter($matchingExistingLinkColor);
+
+  .node.selected > text
+    fill: $matchingExistingLinkColor;
+
+  /* interaction state: node is connected to the selected node */
+  .node.linked
+    rect.node-background
+      fill: $matchingExistingLinkBackgroundColor;
+
+    image
+      -webkit-filter: imgColorFilter($matchingExistingLinkColor);
+      filter: imgColorFilter($matchingExistingLinkColor);
+
+  .node.linked > text
+    fill: $matchingExistingLinkColor;
+
+  /* interaction state: link / borders of selected+connected nodes */
+  .node.selected rect.node-background
+  .node.linked rect.node-background
+  .established.selected.edge path.visible-path
+    stroke-width: 5px;
+    stroke: $matchingExistingLinkColor;
+
+  /* interaction state: connection is about to be broken */
+  .node.linked.hovered rect.node-background
+  .node.disconnectable rect.node-background
+    fill: $matchingDeleteLinkBackgroundColor;
+
+  .node.linked.hovered > text
+  .node.disconnectable > text
+    fill: $matchingDeleteLinkColor;
+
+  .node.linked.hovered image
+  .node.disconnectable image
+    -webkit-filter: imgColorFilter($matchingDeleteLinkColor);
+    filter: imgColorFilter($matchingDeleteLinkColor);
+
+  .node.linked.hovered rect.node-background
+  .node.disconnectable rect.node-background
+  .established.edge.hovered path.visible-path
+    stroke: $matchingDeleteLinkColor;
+
+  .established.edge.hovered path.visible-path
+    stroke-dasharray: 5, 5;
+    stroke-width: 5px;
