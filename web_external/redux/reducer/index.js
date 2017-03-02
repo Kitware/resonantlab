@@ -27,6 +27,9 @@ const initial = Immutable.fromJS({
   panel: {
     dataset: {
       open: false
+    },
+    matching: {
+      open: false
     }
   }
 });
