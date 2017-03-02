@@ -12,10 +12,13 @@ import gearIcon from '~reslab/image/gear.svg';
 import infoIcon from '~reslab/image/info.svg';
 import warningIcon from '~reslab/image/warning.svg';
 
+import { action } from '~reslab/redux/action';
+import { store } from '~reslab/redux/store';
+
 class DatasetPanel {
   initialize (selector) {
-    this.sel = select(selector);
-    this.sel.html(html({
+    this.el = select(selector);
+    this.el.html(html({
       noDataset,
       datasetIcon,
       swapIcon,
@@ -23,6 +26,12 @@ class DatasetPanel {
       infoIcon,
       warningIcon
     }));
+
+    // Toggle "targeted" class on section element.
+    this.el.select('.section-header').on('click', () => {
+      this.el.classed('targeted', !this.el.classed('targeted'));
+      store.dispatch(action.togglePanel('dataset'));
+    });
   }
 
   render () {
