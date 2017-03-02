@@ -30,6 +30,9 @@ const initial = Immutable.fromJS({
     },
     matching: {
       open: false
+    },
+    vis: {
+      open: false
     }
   }
 });

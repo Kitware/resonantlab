@@ -1,0 +1,15 @@
+.section-header
+  .title-section
+    img(src=scatterplotIcon)
+    h2.title No Visualization Selected
+
+  .indicators
+    .indicator-icons
+      img.disabled(src=shareIcon title="Export")
+      img(src=swapIcon title="Select a different visualization")
+      img.new(src=infoIcon title="About this panel")
+      img.warning(src=warningIcon title="Something isn't quite right; click for details")
+
+.content
+  .visualization
+  img.no-vis.empty-state-helper(src=noVis style="display: none;")

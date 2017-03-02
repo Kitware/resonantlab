@@ -22,6 +22,7 @@ import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
 import { initialize as initOpenProjectDialog } from './view/overlay/OpenProjectDialog';
 import { datasetPanel } from './view/panel/DatasetPanel';
 import { matchingPanel } from './view/panel/MatchingPanel';
+import { visPanel } from './view/panel/VisPanel';
 
 import './view/overlay/index.styl';
 import './index.styl';
@@ -55,6 +56,7 @@ select('#svg-filters').html(svgFilters({colors}));
 // Initialize the dataset panel.
 datasetPanel.initialize('#dataset-panel');
 matchingPanel.initialize('#matching-panel');
+visPanel.initialize('#vis-panel');
 
 // Check to see if a user is already logged in.
 restRequest({
