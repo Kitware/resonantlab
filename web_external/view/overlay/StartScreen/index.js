@@ -5,15 +5,16 @@ import html from './index.jade';
 import '~reslab/view/overlay/index.styl';
 import './index.styl';
 
-import folderIcon from '~reslab/image/light/folder.svg';
-import fileIcon from '~reslab/image/light/file.svg';
-import reslabBanner from '~reslab/image/Resonant_Lab_cropped.svg';
-import reslabLogo from '~reslab/image/Resonant_Lab_Mark.svg';
-import resonantLogo from '~reslab/image/Resonant_Mark.svg';
-import kitwareLogo from '~reslab/image/Kitware_Mark.svg';
-import githubLogo from '~reslab/image/Github_Mark.svg';
-import contactIcon from '~reslab/image/contact.svg';
-import closeIcon from '~reslab/image/close.svg';
+import { folderIcon,
+         fileIcon,
+         contactIcon,
+         closeIcon } from '~reslab/image/icon';
+
+import { reslabBanner,
+         reslabLogo,
+         resonantLogo,
+         kitwareLogo,
+         githubLogo } from '~reslab/image/logo';
 
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';

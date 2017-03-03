@@ -3,12 +3,12 @@ import { select } from 'd3-selection';
 import html from './index.jade';
 import './index.styl';
 
-import noDataset from '~reslab/image/noDataset.svg';
-import datasetIcon from '~reslab/image/dataset.svg';
-import swapIcon from '~reslab/image/swap.svg';
-import gearIcon from '~reslab/image/gear.svg';
-import infoIcon from '~reslab/image/info.svg';
-import warningIcon from '~reslab/image/warning.svg';
+import { noDataset } from '~reslab/image/message';
+import { datasetIcon,
+         swapIcon,
+         gearIcon,
+         infoIcon,
+         warningIcon } from '~reslab/image/icon';
 
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';

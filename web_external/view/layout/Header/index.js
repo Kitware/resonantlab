@@ -8,10 +8,10 @@ import { updateProjectName } from '~reslab/util';
 
 import './index.styl';
 import html from './index.jade';
-import hamburgerIcon from './hamburger.svg';
-import infoIcon from './info.svg';
-import publicIcon from './public.svg';
-import reslabIcon from '~reslab/image/Resonant_Lab_cropped.svg';
+import { hamburgerIcon,
+         infoIcon,
+         publicIcon } from '~reslab/image/icon';
+import { reslabBanner } from '~reslab/image/logo';
 
 class Header {
   initialize (selector) {
@@ -19,7 +19,7 @@ class Header {
     this.el.html(html({
       hamburgerIcon,
       infoIcon,
-      reslabIcon,
+      reslabBanner,
       privacyIcon: publicIcon,
       filename: 'Untitled'
     }));

@@ -3,9 +3,9 @@ import { select } from 'd3-selection';
 import html from './index.jade';
 import './index.styl';
 
-import closeIcon from '~reslab/image/close.svg';
-import publicFileIcon from '~reslab/image/publicFile.svg';
-import privateFileIcon from '~reslab/image/privateFile.svg';
+import { closeIcon,
+         publicFileIcon,
+         privateFileIcon } from '~reslab/image/icon';
 
 import { store } from '~reslab/redux/store';
 import { action } from '~reslab/redux/action';
