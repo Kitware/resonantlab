@@ -16,8 +16,7 @@ import privateIcon from './view/layout/Header/private.svg';
 import html from './index.jade';
 import svgFilters from './style/svgFilters.jade';
 import { header } from './view/layout/Header';
-import { initialize as initStartScreen,
-         render as renderStartScreen } from './view/overlay/StartScreen';
+import { startScreen } from './view/overlay/StartScreen';
 import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
 import { openProjectDialog } from './view/overlay/OpenProjectDialog';
 import { datasetPanel } from './view/panel/DatasetPanel';
@@ -40,7 +39,7 @@ header.initialize(select('#header'));
 
 // Instantiate the overlays.
 const overlays = [
-  ['start-screen', initStartScreen],
+  ['start-screen', startScreen.initialize, startScreen],
   ['login-dialog', initLoginDialog],
   ['open-project-dialog', openProjectDialog.initialize, openProjectDialog]
 ];
@@ -103,7 +102,7 @@ observeStore(next => {
       break;
 
     case appMode.startScreen:
-      renderStartScreen();
+      startScreen.render();
       switchOverlay('start-screen');
       break;
 
@@ -115,7 +114,7 @@ observeStore(next => {
 
 // Update start screen with login/logout changes.
 observeStore(
-  next => renderStartScreen(),
+  next => startScreen.render(),
   s => s.get('user')
 );
 

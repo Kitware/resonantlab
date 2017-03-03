@@ -25,89 +25,92 @@ import { initializeNewProject,
 
 import { logout } from 'girder/auth';
 
-const initialize = (sel) => {
-  const loggedIn = !!currentUser();
+class StartScreen {
+  initialize (selector) {
+    this.el = selector;
 
-  sel.html(html({
-    folderIcon,
-    fileIcon,
-    reslabBanner,
-    reslabLogo,
-    resonantLogo,
-    kitwareLogo,
-    githubLogo,
-    contactIcon,
-    closeIcon,
-    loggedIn
-  }));
+    const loggedIn = !!currentUser();
 
-  sel.select('.new-project')
-    .on('click', () => {
+    this.el.html(html({
+      folderIcon,
+      fileIcon,
+      reslabBanner,
+      reslabLogo,
+      resonantLogo,
+      kitwareLogo,
+      githubLogo,
+      contactIcon,
+      closeIcon,
+      loggedIn
+    }));
+
+    this.el.select('.new-project')
+      .on('click', () => {
+        if (currentUser()) {
+          initializeNewProject().then(project => {
+            store.dispatch(action.switchMode(appMode.project));
+            store.dispatch(action.openProject(project.id, project.name, project.visibility));
+          });
+        }
+      });
+
+    this.el.select('.open-project').on('click', () => {
       if (currentUser()) {
-        initializeNewProject().then(project => {
-          store.dispatch(action.switchMode(appMode.project));
-          store.dispatch(action.openProject(project.id, project.name, project.visibility));
+        const state = store.getState();
+        const publicProj = getProjects(state.getIn(['user', 'public']));
+        const privateProj = getProjects(state.getIn(['user', 'private']));
+
+        Promise.all([publicProj, privateProj]).then(proms => {
+          openProjectDialog.render(...proms);
+          store.dispatch(action.switchMode(appMode.openProjectDialog));
         });
       }
     });
 
-  sel.select('.open-project').on('click', () => {
-    if (currentUser()) {
-      const state = store.getState();
-      const publicProj = getProjects(state.getIn(['user', 'public']));
-      const privateProj = getProjects(state.getIn(['user', 'private']));
-
-      Promise.all([publicProj, privateProj]).then(proms => {
-        openProjectDialog.render(...proms);
-        store.dispatch(action.switchMode(appMode.openProjectDialog));
-      });
-    }
-  });
-
-  sel.select('.log-in').on('click', () => {
-    store.dispatch(action.switchMode(appMode.loginDialog));
-  });
-
-  sel.select('.log-out').on('click', () => {
-    logout().then(() => store.dispatch(action.logout()));
-  });
-
-  sel.select('.close-overlay').on('click', () => store.dispatch(action.lastMode()));
-};
-
-const render = () => {
-  const state = store.getState();
-  const loggedIn = !!currentUser();
-  const username = state.getIn(['user', 'login']);
-
-  const el = select('.overlay.start-screen');
-
-  // Display "logout" or "login/register" depending on login state.
-  el.select('.log-out')
-    .style('display', loggedIn ? null : 'none')
-    .text(() => {
-      if (username) {
-        return `Log out (${username})`;
-      } else {
-        return 'Log out';
-      }
+    this.el.select('.log-in').on('click', () => {
+      store.dispatch(action.switchMode(appMode.loginDialog));
     });
-  el.selectAll('.log-in, .register')
-    .style('display', loggedIn ? 'none' : null);
 
-  // Gray out the new project / open project options if not logged in.
-  el.selectAll('.new-project, .open-project')
-    .classed('disabled', !loggedIn)
-    .classed('clickable', loggedIn);
+    this.el.select('.log-out').on('click', () => {
+      logout().then(() => store.dispatch(action.logout()));
+    });
 
-  // Only display the "close" button if the start screen was invoked from a
-  // different part of the app.
-  const showClose = state.get('mode') !== state.get('lastMode');
-  el.select('.close-overlay')
-    .style('display', showClose ? null : 'none');
-};
+    this.el.select('.close-overlay').on('click', () => store.dispatch(action.lastMode()));
+  }
+
+  render () {
+    const state = store.getState();
+    const loggedIn = !!currentUser();
+    const username = state.getIn(['user', 'login']);
+
+    // Display "logout" or "login/register" depending on login state.
+    this.el.select('.log-out')
+      .style('display', loggedIn ? null : 'none')
+      .text(() => {
+        if (username) {
+          return `Log out (${username})`;
+        } else {
+          return 'Log out';
+        }
+      });
+    this.el.selectAll('.log-in, .register')
+      .style('display', loggedIn ? 'none' : null);
+
+    // Gray out the new project / open project options if not logged in.
+    this.el.selectAll('.new-project, .open-project')
+      .classed('disabled', !loggedIn)
+      .classed('clickable', loggedIn);
+
+    // Only display the "close" button if the start screen was invoked from a
+    // different part of the app.
+    const showClose = state.get('mode') !== state.get('lastMode');
+    this.el.select('.close-overlay')
+      .style('display', showClose ? null : 'none');
+  }
+}
+
+const startScreen = new StartScreen();
 
 export {
-  initialize,
-  render
+  startScreen
 };
