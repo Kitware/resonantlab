@@ -37,8 +37,8 @@
     image
       width: 1em;
       height: 1em;
-      -webkit-filter: imgColorFilter($matchingNodeColor);
-      filter: imgColorFilter($matchingNodeColor);
+      -webkit-filter: img-color-filter($matchingNodeColor);
+      filter: img-color-filter($matchingNodeColor);
 
   .node.data
     image
@@ -97,8 +97,8 @@
       stroke: $matchingCreateLinkColor;
 
     image
-      -webkit-filter: imgColorFilter($matchingCreateLinkColor);
-      filter: imgColorFilter($matchingCreateLinkColor);
+      -webkit-filter: img-color-filter($matchingCreateLinkColor);
+      filter: img-color-filter($matchingCreateLinkColor);
 
   .node.hovered > text
     fill: $matchingCreateLinkColor;
@@ -112,8 +112,8 @@
       stroke: none;
 
     image
-      -webkit-filter: imgColorFilter($lightDisabledColor);
-      filter: imgColorFilter($lightDisabledColor);
+      -webkit-filter: img-color-filter($lightDisabledColor);
+      filter: img-color-filter($lightDisabledColor);
 
   .node.ineligible > text
     fill: $lightDisabledColor;
@@ -125,8 +125,8 @@
       stroke: none;
 
     image
-      -webkit-filter: imgColorFilter($matchingCreateLinkColor);
-      filter: imgColorFilter($matchingCreateLinkColor);
+      -webkit-filter: img-color-filter($matchingCreateLinkColor);
+      filter: img-color-filter($matchingCreateLinkColor);
 
   .node.connectable > text
     fill: $matchingCreateLinkColor;
@@ -156,8 +156,8 @@
       fill: $matchingExistingLinkBackgroundColor;
 
     image
-      -webkit-filter: imgColorFilter($matchingExistingLinkColor);
-      filter: imgColorFilter($matchingExistingLinkColor);
+      -webkit-filter: img-color-filter($matchingExistingLinkColor);
+      filter: img-color-filter($matchingExistingLinkColor);
 
   .node.selected > text
     fill: $matchingExistingLinkColor;
@@ -168,8 +168,8 @@
       fill: $matchingExistingLinkBackgroundColor;
 
     image
-      -webkit-filter: imgColorFilter($matchingExistingLinkColor);
-      filter: imgColorFilter($matchingExistingLinkColor);
+      -webkit-filter: img-color-filter($matchingExistingLinkColor);
+      filter: img-color-filter($matchingExistingLinkColor);
 
   .node.linked > text
     fill: $matchingExistingLinkColor;
@@ -192,8 +192,8 @@
 
   .node.linked.hovered image
   .node.disconnectable image
-    -webkit-filter: imgColorFilter($matchingDeleteLinkColor);
-    filter: imgColorFilter($matchingDeleteLinkColor);
+    -webkit-filter: img-color-filter($matchingDeleteLinkColor);
+    filter: img-color-filter($matchingDeleteLinkColor);
 
   .node.linked.hovered rect.node-background
   .node.disconnectable rect.node-background

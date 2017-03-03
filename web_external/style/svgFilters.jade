@@ -2,18 +2,18 @@ svg(width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1")
   defs
     // CSS stylesheets can reference filters in here simply with filter:
     // url(#recolorImageTo333333); (note that mainPage.js populates this with
-    // lots of colors in addition to dropShadow)
-    filter#dropShadow(x="-50%" y="-50%" width="200%" height="200%")
+    // lots of colors in addition to drop-shadow)
+    filter#drop-shadow(x="-50%" y="-50%" width="200%" height="200%")
       feOffset(result="offOut" in="SourceAlpha" dx="0" dy="5")
       feGaussianBlur(result="blurOut" in="offOut" stdDeviation="15" )
       feBlend(in="SourceGraphic" in2="blurOut" mode="normal" )
 
-    filter#dropSoftShadow(x="-50%" y="-50%" width="200%" height="200%")
+    filter#drop-soft-shadow(x="-50%" y="-50%" width="200%" height="200%")
       feOffset(result="offOut" in="SourceAlpha" dx="5" dy="15" )
       feGaussianBlur(result="blurOut" in="offOut" stdDeviation="30" )
       feBlend(in="SourceGraphic" in2="blurOut" mode="normal" )
 
-    filter#dropIntenseShadow(x="-100%" y="-100%" width="300%" height="300%")
+    filter#drop-intense-shadow(x="-100%" y="-100%" width="300%" height="300%")
       feOffset(result="offOut" in="SourceAlpha" dx="0" dy="2" )
       feGaussianBlur(result="blurOut" in="offOut" stdDeviation="13" )
       feComponentTransfer(in="blurOut" result="lightenOut")
@@ -23,7 +23,7 @@ svg(width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1")
         feFuncB(type="linear" slope="0" intercept="0")
       feBlend(in="SourceGraphic" in2="lightenOut" mode="normal" )
 
-    filter#dropHalo(x="-50%" y="-50%" width="200%" height="200%")
+    filter#drop-halo(x="-50%" y="-50%" width="200%" height="200%")
       feComponentTransfer(in="SourceAlpha" result="color")
         feFuncR(type="linear" slope="0" intercept="1")
         feFuncG(type="linear" slope="0" intercept="1")
@@ -33,7 +33,7 @@ svg(width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1")
       feBlend(in="SourceGraphic" in2="blurOut" mode="normal" )
 
     each spec, name in colors
-      filter.recolor(id=`recolorImageTo${name}`)
+      filter.recolor(id=`recolor-image-${name}`)
         feComponentTransfer(in="SourceAlpha" result="color")
           feFuncR(type="linear" slope="0" intercept=`${spec.r}`)
           feFuncG(type="linear" slope="0" intercept=`${spec.g}`)

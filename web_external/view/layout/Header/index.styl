@@ -22,12 +22,12 @@
     height: 1.5em;
     margin: 0.75em;
     cursor: pointer;
-    -webkit-filter: imgColorFilter($defaultLightIconColor);
-    filter: imgColorFilter($defaultLightIconColor);
+    -webkit-filter: img-color-filter($defaultLightIconColor);
+    filter: img-color-filter($defaultLightIconColor);
 
   .branding-icons img
-    -webkit-filter imgColorFilter($defaultLightIconColor);
-    filter imgColorFilter($defaultLightIconColor);
+    -webkit-filter img-color-filter($defaultLightIconColor);
+    filter img-color-filter($defaultLightIconColor);
     width 10em;
     height 2em;
     margin 0.25em;
@@ -35,8 +35,8 @@
   .branding-icons img:hover
     /* Sneakiness here: we *remove* the color filter,
        so the native icon colors show through */
-    -webkit-filter url(#dropShadow);
-    filter url(#dropShadow);
+    -webkit-filter url(#drop-shadow);
+    filter url(#drop-shadow);
 
   .interface-icons
     padding-right 0.25em;
@@ -58,12 +58,12 @@
     box-shadow none;
 
   img.header-button.new
-    -webkit-filter imgColorFilter($newInfoIconColor);
-    filter imgColorFilter($newInfoIconColor);
+    -webkit-filter img-color-filter($newInfoIconColor);
+    filter img-color-filter($newInfoIconColor);
 
   img.header-button:hover
-    -webkit-filter imgColorFilter($lightRolloverColor) url(#dropShadow);
-    filter imgColorFilter($lightRolloverColor) url(#dropShadow);
+    -webkit-filter img-color-filter($lightRolloverColor) url(#drop-shadow);
+    filter img-color-filter($lightRolloverColor) url(#drop-shadow);
 
   div.indicators
     position relative;
