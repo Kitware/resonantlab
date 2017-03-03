@@ -10,8 +10,8 @@ import { scatterplotIcon,
          warningIcon } from '~reslab/image/icon';
 import { noVis } from '~reslab/image/message';
 
-import { action } from '~reslab/redux/action';
-import { store } from '~reslab/redux/store';
+import { action,
+         store } from '~reslab/redux';
 
 class VisPanel {
   initialize (selector) {

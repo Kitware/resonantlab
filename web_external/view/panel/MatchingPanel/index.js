@@ -9,8 +9,8 @@ import { matchingIcon,
 import { matchingNoDataset,
          matchingNoVis } from '~reslab/image/message';
 
-import { action } from '~reslab/redux/action';
-import { store } from '~reslab/redux/store';
+import { action,
+         store } from '~reslab/redux';
 
 class MatchingPanel {
   initialize (selector) {

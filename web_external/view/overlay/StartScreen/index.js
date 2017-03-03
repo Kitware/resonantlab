@@ -16,9 +16,9 @@ import { reslabBanner,
          kitwareLogo,
          githubLogo } from '~reslab/image/logo';
 
-import { action } from '~reslab/redux/action';
-import { store } from '~reslab/redux/store';
-import { appMode } from '~reslab/redux/reducer';
+import { action,
+         store,
+         appMode } from '~reslab/redux';
 import { openProjectDialog } from '~reslab/view/overlay/OpenProjectDialog';
 import { initializeNewProject,
          currentUser,

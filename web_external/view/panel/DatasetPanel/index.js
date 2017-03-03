@@ -10,8 +10,8 @@ import { datasetIcon,
          infoIcon,
          warningIcon } from '~reslab/image/icon';
 
-import { action } from '~reslab/redux/action';
-import { store } from '~reslab/redux/store';
+import { action,
+         store } from '~reslab/redux';
 
 class DatasetPanel {
   initialize (selector) {

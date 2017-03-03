@@ -7,9 +7,9 @@ import { closeIcon,
          publicFileIcon,
          privateFileIcon } from '~reslab/image/icon';
 
-import { store } from '~reslab/redux/store';
-import { action } from '~reslab/redux/action';
-import { appMode } from '~reslab/redux/reducer';
+import { store,
+         action,
+         appMode } from '~reslab/redux';
 import { gatherProjectInfo } from '~reslab/util';
 
 class OpenProjectDialog {

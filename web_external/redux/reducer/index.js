@@ -1,14 +1,7 @@
 import Immutable from 'immutable';
 
-import { makeEnum } from '~reslab/util/makeEnum';
 import { actionType } from '~reslab/redux/action';
-
-const appMode = makeEnum('appMode', [
-  'startScreen',
-  'loginDialog',
-  'openProjectDialog',
-  'project'
-]);
+import { appMode } from '~reslab/redux/appMode';
 
 const initial = Immutable.fromJS({
   mode: appMode.startScreen,
@@ -107,6 +100,5 @@ const reducer = (state = initial, action = {}) => {
 };
 
 export {
-  appMode,
   reducer
 };
