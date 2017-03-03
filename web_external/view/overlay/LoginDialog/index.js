@@ -16,15 +16,6 @@ class LoginDialog {
 
     this.el.html(html());
 
-    const clear = () => {
-      this.el.select('#g-login')
-        .property('value', '');
-      this.el.select('#g-password')
-        .property('value', '');
-      this.el.select('.g-validation-failed-message')
-        .text('');
-    };
-
     this.el.select('a#close-login').on('click', () => {
       this.clear();
       store.dispatch(action.lastMode());

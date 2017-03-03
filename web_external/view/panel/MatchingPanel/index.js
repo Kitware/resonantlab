@@ -3,11 +3,11 @@ import { select } from 'd3-selection';
 import html from './index.jade';
 import './index.styl';
 
-import matchingIcon from '~reslab/image/matching.svg';
-import infoIcon from '~reslab/image/info.svg';
-import warningIcon from '~reslab/image/warning.svg';
-import matchingNoDataset from '~reslab/image/matchingNoDataset.svg';
-import matchingNoVis from '~reslab/image/matchingNoVis.svg';
+import { matchingIcon,
+         infoIcon,
+         warningIcon } from '~reslab/image/icon';
+import { matchingNoDataset,
+         matchingNoVis } from '~reslab/image/message';
 
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';

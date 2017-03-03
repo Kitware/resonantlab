@@ -10,8 +10,8 @@ import { appMode } from './redux/reducer';
 import { switchOverlay,
          userInformation } from './util';
 
-import publicIcon from './view/layout/Header/public.svg';
-import privateIcon from './view/layout/Header/private.svg';
+import { publicIcon,
+         privateIcon } from './image/icon';
 
 import html from './index.jade';
 import svgFilters from './style/svgFilters.jade';

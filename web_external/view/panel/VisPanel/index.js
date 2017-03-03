@@ -3,12 +3,12 @@ import { select } from 'd3-selection';
 import html from './index.jade';
 import './index.styl';
 
-import noVis from '~reslab/image/noVis.svg';
-import scatterplotIcon from '~reslab/image/scatterplot.svg';
-import shareIcon from '~reslab/image/share.svg';
-import swapIcon from '~reslab/image/swap.svg';
-import infoIcon from '~reslab/image/info.svg';
-import warningIcon from '~reslab/image/warning.svg';
+import { scatterplotIcon,
+         shareIcon,
+         swapIcon,
+         infoIcon,
+         warningIcon } from '~reslab/image/icon';
+import { noVis } from '~reslab/image/message';
 
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';
