@@ -17,7 +17,7 @@ import html from './index.jade';
 import svgFilters from './style/svgFilters.jade';
 import { header } from './view/layout/Header';
 import { startScreen } from './view/overlay/StartScreen';
-import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
+import { loginDialog } from './view/overlay/LoginDialog';
 import { openProjectDialog } from './view/overlay/OpenProjectDialog';
 import { datasetPanel } from './view/panel/DatasetPanel';
 import { matchingPanel } from './view/panel/MatchingPanel';
@@ -40,7 +40,7 @@ header.initialize(select('#header'));
 // Instantiate the overlays.
 const overlays = [
   ['start-screen', startScreen.initialize, startScreen],
-  ['login-dialog', initLoginDialog],
+  ['login-dialog', loginDialog.initialize, loginDialog],
   ['open-project-dialog', openProjectDialog.initialize, openProjectDialog]
 ];
 
