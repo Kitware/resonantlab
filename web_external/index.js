@@ -10,12 +10,12 @@ import { appMode } from './redux/reducer';
 import { switchOverlay,
          userInformation } from './util';
 
-import publicIcon from './view/layout/header/public.svg';
-import privateIcon from './view/layout/header/private.svg';
+import publicIcon from './view/layout/Header/public.svg';
+import privateIcon from './view/layout/Header/private.svg';
 
 import html from './index.jade';
 import svgFilters from './style/svgFilters.jade';
-import { initialize as initHeader } from './view/layout/header';
+import { header } from './view/layout/Header';
 import { initialize as initStartScreen,
          render as renderStartScreen } from './view/overlay/StartScreen';
 import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
@@ -36,7 +36,7 @@ import colors from './style/colors.json';
 select('#app').html(html);
 
 // Instantiate the header.
-initHeader(select('#header'));
+header.initialize(select('#header'));
 
 // Instantiate the overlays.
 const overlays = [
