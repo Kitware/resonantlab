@@ -9,7 +9,7 @@ import { closeIcon,
 
 import { store } from '~reslab/redux/store';
 import { action } from '~reslab/redux/action';
-import { appMode } from '~reslab/redux/reducer';
+import { appMode } from '~reslab/redux/appMode';
 import { gatherProjectInfo } from '~reslab/util';
 
 class OpenProjectDialog {

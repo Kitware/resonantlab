@@ -2,7 +2,7 @@ import { event,
          select } from 'd3-selection';
 
 import { action } from '~reslab/redux/action';
-import { appMode } from '~reslab/redux/reducer';
+import { appMode } from '~reslab/redux/appMode';
 import { store } from '~reslab/redux/store';
 import { updateProjectName } from '~reslab/util';
 

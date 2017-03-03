@@ -18,7 +18,7 @@ import { reslabBanner,
 
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';
-import { appMode } from '~reslab/redux/reducer';
+import { appMode } from '~reslab/redux/appMode';
 import { openProjectDialog } from '~reslab/view/overlay/OpenProjectDialog';
 import { initializeNewProject,
          currentUser,
