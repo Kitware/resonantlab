@@ -1,9 +1,9 @@
 import { event,
          select } from 'd3-selection';
 
-import { action } from '~reslab/redux/action';
-import { appMode } from '~reslab/redux/appMode';
-import { store } from '~reslab/redux/store';
+import { action,
+         appMode,
+         store } from '~reslab/redux';
 import { updateProjectName } from '~reslab/util';
 
 import './index.styl';

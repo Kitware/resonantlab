@@ -3,10 +3,10 @@ import { select,
 
 import { restRequest } from 'girder/rest';
 
-import { action } from './redux/action';
-import { store,
-         observeStore } from './redux/store';
-import { appMode } from './redux/appMode';
+import { action,
+         store,
+         observeStore,
+         appMode } from './redux';
 import { switchOverlay,
          userInformation } from './util';
 

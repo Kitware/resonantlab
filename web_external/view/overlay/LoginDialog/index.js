@@ -4,8 +4,8 @@ import { event,
 import html from './index.jade';
 import './index.styl';
 
-import { action } from '~reslab/redux/action';
-import { store } from '~reslab/redux/store';
+import { action,
+         store } from '~reslab/redux';
 import { userInformation } from '~reslab/util';
 
 import { login } from 'girder/auth';

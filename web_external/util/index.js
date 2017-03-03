@@ -2,7 +2,7 @@ import { select } from 'd3-selection';
 
 import { restRequest } from 'girder/rest';
 
-import { store } from '~reslab/redux/store';
+import { store } from '~reslab/redux';
 
 const switchOverlay = (which) => {
   select('#overlay')
