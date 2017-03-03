@@ -1,5 +1,3 @@
-import { select } from 'd3-selection';
-
 import html from './index.jade';
 import './index.styl';
 
@@ -12,50 +10,53 @@ import { action } from '~reslab/redux/action';
 import { appMode } from '~reslab/redux/reducer';
 import { gatherProjectInfo } from '~reslab/util';
 
-const initialize = (sel) => {
-  sel.html(html({
-    closeIcon
-  }));
+class OpenProjectDialog {
+  initialize (selector) {
+    this.el = selector;
+    this.el.html(html({
+      closeIcon
+    }));
 
-  sel.select('.close-overlay')
-    .on('click', () => store.dispatch(action.lastMode()));
-};
+    this.el.select('.close-overlay')
+      .on('click', () => store.dispatch(action.lastMode()));
+  }
 
-const render = (publicProj, privateProj) => {
-  const main = select('.overlay.open-project-dialog');
-  showProjects(main, '.public-projects', publicProj, publicFileIcon);
-  showProjects(main, '.private-projects', privateProj, privateFileIcon);
-};
+  render (publicProj, privateProj) {
+    this.showProjects('.public-projects', publicProj, publicFileIcon);
+    this.showProjects('.private-projects', privateProj, privateFileIcon);
+  }
 
-const showProjects = (main, selector, projects, fileIcon) => {
-  const sel = main.select(selector)
-    .style('display', projects.length > 0 ? null : 'none')
-    .select('.project-list');
+  showProjects (selector, projects, fileIcon) {
+    const sel = this.el.select(selector)
+      .style('display', projects.length > 0 ? null : 'none')
+      .select('.project-list');
 
-  sel.selectAll('*')
-    .remove();
+    sel.selectAll('*')
+      .remove();
 
-  const icon = sel.selectAll('.circle-button')
-    .data(projects)
-    .enter()
-    .append('div')
-    .on('click', d => {
-      store.dispatch(action.switchMode(appMode.project));
+    const icon = sel.selectAll('.circle-button')
+      .data(projects)
+      .enter()
+      .append('div')
+      .on('click', d => {
+        store.dispatch(action.switchMode(appMode.project));
 
-      const project = gatherProjectInfo(d);
-      store.dispatch(action.openProject(project.id, project.name, project.visibility));
-    })
-    .classed('circle-button', true);
+        const project = gatherProjectInfo(d);
+        store.dispatch(action.openProject(project.id, project.name, project.visibility));
+      })
+      .classed('circle-button', true);
 
-  icon.append('img')
-    .classed('project-glyph', true)
-    .attr('src', fileIcon);
+    icon.append('img')
+      .classed('project-glyph', true)
+      .attr('src', fileIcon);
 
-  icon.append('span')
-    .text(d => d.name);
-};
+    icon.append('span')
+      .text(d => d.name);
+  }
+}
+
+const openProjectDialog = new OpenProjectDialog();
 
 export {
-  initialize,
-  render
+  openProjectDialog,
 };

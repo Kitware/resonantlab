@@ -18,7 +18,7 @@ import closeIcon from '~reslab/image/close.svg';
 import { action } from '~reslab/redux/action';
 import { store } from '~reslab/redux/store';
 import { appMode } from '~reslab/redux/reducer';
-import { render as renderOpenProjectDialog } from '~reslab/view/overlay/OpenProjectDialog';
+import { openProjectDialog } from '~reslab/view/overlay/OpenProjectDialog';
 import { initializeNewProject,
          currentUser,
          getProjects } from '~reslab/util';
@@ -58,7 +58,7 @@ const initialize = (sel) => {
       const privateProj = getProjects(state.getIn(['user', 'private']));
 
       Promise.all([publicProj, privateProj]).then(proms => {
-        renderOpenProjectDialog(...proms);
+        openProjectDialog.render(...proms);
         store.dispatch(action.switchMode(appMode.openProjectDialog));
       });
     }

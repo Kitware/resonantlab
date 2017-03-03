@@ -19,7 +19,7 @@ import { initialize as initHeader } from './view/layout/header';
 import { initialize as initStartScreen,
          render as renderStartScreen } from './view/overlay/StartScreen';
 import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
-import { initialize as initOpenProjectDialog } from './view/overlay/OpenProjectDialog';
+import { openProjectDialog } from './view/overlay/OpenProjectDialog';
 import { datasetPanel } from './view/panel/DatasetPanel';
 import { matchingPanel } from './view/panel/MatchingPanel';
 import { visPanel } from './view/panel/VisPanel';
@@ -42,10 +42,10 @@ initHeader(select('#header'));
 const overlays = [
   ['start-screen', initStartScreen],
   ['login-dialog', initLoginDialog],
-  ['open-project-dialog', initOpenProjectDialog]
+  ['open-project-dialog', openProjectDialog.initialize, openProjectDialog]
 ];
 
-overlays.forEach(spec => spec[1](select('#overlay')
+overlays.forEach(spec => spec[1].bind(spec[2])(select('#overlay')
   .append('div')
   .classed('overlay', true)
   .classed(spec[0], true)));
