@@ -24,29 +24,29 @@ class Header {
       filename: 'Untitled'
     }));
 
-    this.el.select('#aboutResLabHeaderButton').on('click', () => {
+    this.el.select('.about-reslab').on('click', () => {
       store.dispatch(action.switchMode(appMode.startScreen));
     });
 
-    this.el.select('#hamburgerButton').on('click', () => {
-      console.log('click #hamburgerButton');
+    this.el.select('.hamburger-button').on('click', () => {
+      console.log('click .hamburger-button');
     });
 
-    this.el.select('#helpButton').on('click', () => {
-      console.log('click #helpButton');
+    this.el.select('.help-button').on('click', () => {
+      console.log('click .help-button');
     });
 
     this.el.select('.project-visibility').on('click', () => {
       console.log('click .project-visibility');
     });
 
-    this.el.select('#projectName').on('blur', () => {
+    this.el.select('.project-name').on('blur', () => {
       // Whenever the project name field blurs (that is, loses focus), we have to
       // check whether we need to update the project name on the server.
       //
       // Grab the new name from the text field, and the original name from
       // application state.
-      const textField = this.el.select('#projectName');
+      const textField = this.el.select('.project-name');
       const newName = textField.text();
       const oldName = store.getState().getIn(['project', 'name']);
 
@@ -66,19 +66,19 @@ class Header {
       }
     });
 
-    this.el.select('#projectName').on('keydown', () => {
+    this.el.select('.project-name').on('keydown', () => {
       // We need to treat two keystrokes specially - the enter key normally
       // inserts a linebreak in a content-editable span element, but we want it to
       // "save" the filename. By contract, the escape key normally blurs the
       // element, but we also want to "cancel" the editing operation first.
       switch (event.keyCode) {
         case 13: // Enter key
-          this.el.select('#projectName').node().blur();
+          this.el.select('.project-name').node().blur();
           event.preventDefault();
           break;
 
         case 27: // Escape key.
-          this.el.select('#projectName')
+          this.el.select('.project-name')
             .text(store.getState().getIn(['project', 'name']));
           break;
       }

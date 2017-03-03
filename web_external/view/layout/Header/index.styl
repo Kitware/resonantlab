@@ -17,7 +17,7 @@
   align-items center
   justify-content space-between
 
-  img.headerButton
+  img.header-button
     width: 1.5em;
     height: 1.5em;
     margin: 0.75em;
@@ -25,31 +25,31 @@
     -webkit-filter: imgColorFilter($defaultLightIconColor);
     filter: imgColorFilter($defaultLightIconColor);
 
-  #brandingIcons img
+  .branding-icons img
     -webkit-filter imgColorFilter($defaultLightIconColor);
     filter imgColorFilter($defaultLightIconColor);
     width 10em;
     height 2em;
     margin 0.25em;
 
-  #brandingIcons img:hover
+  .branding-icons img:hover
     /* Sneakiness here: we *remove* the color filter,
        so the native icon colors show through */
     -webkit-filter url(#dropShadow);
     filter url(#dropShadow);
 
-  #interfaceIcons
+  .interface-icons
     padding-right 0.25em;
 
-  #projectHeader
+  .project-header
     display flex;
     align-items center;
     padding-left 0.25em;
 
-  #projectHeader #projectIcons
+  .project-header .project-icons
     display inherit;
 
-  #projectName
+  .project-name
     background-color inherit;
     color inherit;
     border none;
@@ -57,11 +57,11 @@
     text-align center;
     box-shadow none;
 
-  img.headerButton.new
+  img.header-button.new
     -webkit-filter imgColorFilter($newInfoIconColor);
     filter imgColorFilter($newInfoIconColor);
 
-  img.headerButton:hover
+  img.header-button:hover
     -webkit-filter imgColorFilter($lightRolloverColor) url(#dropShadow);
     filter imgColorFilter($lightRolloverColor) url(#dropShadow);
 

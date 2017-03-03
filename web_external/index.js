@@ -124,7 +124,7 @@ observeStore(next => {
   const project = next.get('project');
 
   if (project) {
-    select('#projectName')
+    select('.project-name')
       .text(project.get('name'));
 
     select('#header')
