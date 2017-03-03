@@ -1,4 +1,5 @@
-import { select } from 'd3-selection';
+import { event,
+         select } from 'd3-selection';
 
 import html from './index.jade';
 import './index.styl';
@@ -32,6 +33,15 @@ class LoginDialog {
     // NOTE: need to use an arrow function for the callback to preserve "this"
     // context.
     this.el.select('a#submit-login').on('click', () => this.submit());
+
+    // Also submit the form when "enter" is pressed on either text field.
+    const enter = () => {
+      if (event.keyCode === 13) {
+        this.submit();
+      }
+    };
+    this.el.select('#g-login').on('keydown', enter);
+    this.el.select('#g-password').on('keydown', enter);
   }
 
   submit () {
