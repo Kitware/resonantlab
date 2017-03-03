@@ -10,16 +10,15 @@ import { appMode } from './redux/reducer';
 import { switchOverlay,
          userInformation } from './util';
 
-import publicIcon from './view/layout/header/public.svg';
-import privateIcon from './view/layout/header/private.svg';
+import publicIcon from './view/layout/Header/public.svg';
+import privateIcon from './view/layout/Header/private.svg';
 
 import html from './index.jade';
 import svgFilters from './style/svgFilters.jade';
-import { initialize as initHeader } from './view/layout/header';
-import { initialize as initStartScreen,
-         render as renderStartScreen } from './view/overlay/StartScreen';
-import { initialize as initLoginDialog } from './view/overlay/LoginDialog';
-import { initialize as initOpenProjectDialog } from './view/overlay/OpenProjectDialog';
+import { header } from './view/layout/Header';
+import { startScreen } from './view/overlay/StartScreen';
+import { loginDialog } from './view/overlay/LoginDialog';
+import { openProjectDialog } from './view/overlay/OpenProjectDialog';
 import { datasetPanel } from './view/panel/DatasetPanel';
 import { matchingPanel } from './view/panel/MatchingPanel';
 import { visPanel } from './view/panel/VisPanel';
@@ -36,19 +35,20 @@ import colors from './style/colors.json';
 select('#app').html(html);
 
 // Instantiate the header.
-initHeader(select('#header'));
+header.initialize('#header');
 
 // Instantiate the overlays.
 const overlays = [
-  ['start-screen', initStartScreen],
-  ['login-dialog', initLoginDialog],
-  ['open-project-dialog', initOpenProjectDialog]
+  ['start-screen', startScreen.initialize, startScreen],
+  ['login-dialog', loginDialog.initialize, loginDialog],
+  ['open-project-dialog', openProjectDialog.initialize, openProjectDialog]
 ];
 
-overlays.forEach(spec => spec[1](select('#overlay')
+overlays.forEach(spec => spec[1].bind(spec[2])(select('#overlay')
   .append('div')
   .classed('overlay', true)
-  .classed(spec[0], true)));
+  .classed(spec[0], true)
+  .node()));
 
 // Render color defs.
 select('#svg-filters').html(svgFilters({colors}));
@@ -103,7 +103,7 @@ observeStore(next => {
       break;
 
     case appMode.startScreen:
-      renderStartScreen();
+      startScreen.render();
       switchOverlay('start-screen');
       break;
 
@@ -115,7 +115,7 @@ observeStore(next => {
 
 // Update start screen with login/logout changes.
 observeStore(
-  next => renderStartScreen(),
+  next => startScreen.render(),
   s => s.get('user')
 );
 
