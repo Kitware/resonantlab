@@ -27,7 +27,7 @@ import { logout } from 'girder/auth';
 
 class StartScreen {
   initialize (selector) {
-    this.el = selector;
+    this.el = select(selector);
 
     const loggedIn = !!currentUser();
 

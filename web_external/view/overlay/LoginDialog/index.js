@@ -1,3 +1,5 @@
+import { select } from 'd3-selection';
+
 import html from './index.jade';
 import './index.styl';
 
@@ -9,7 +11,7 @@ import { login } from 'girder/auth';
 
 class LoginDialog {
   initialize (selector) {
-    this.el = selector;
+    this.el = select(selector);
 
     this.el.html(html());
 

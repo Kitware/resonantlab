@@ -1,3 +1,5 @@
+import { select } from 'd3-selection';
+
 import html from './index.jade';
 import './index.styl';
 
@@ -12,7 +14,7 @@ import { gatherProjectInfo } from '~reslab/util';
 
 class OpenProjectDialog {
   initialize (selector) {
-    this.el = selector;
+    this.el = select(selector);
     this.el.html(html({
       closeIcon
     }));
@@ -58,5 +60,5 @@ class OpenProjectDialog {
 const openProjectDialog = new OpenProjectDialog();
 
 export {
-  openProjectDialog,
+  openProjectDialog
 };

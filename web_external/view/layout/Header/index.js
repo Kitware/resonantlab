@@ -15,7 +15,7 @@ import reslabIcon from '~reslab/image/Resonant_Lab_cropped.svg';
 
 class Header {
   initialize (selector) {
-    this.el = selector;
+    this.el = select(selector);
     this.el.html(html({
       hamburgerIcon,
       infoIcon,
@@ -84,7 +84,7 @@ class Header {
       }
     });
   }
-};
+}
 
 const header = new Header();
 

@@ -35,7 +35,7 @@ import colors from './style/colors.json';
 select('#app').html(html);
 
 // Instantiate the header.
-header.initialize(select('#header'));
+header.initialize('#header');
 
 // Instantiate the overlays.
 const overlays = [
@@ -47,7 +47,8 @@ const overlays = [
 overlays.forEach(spec => spec[1].bind(spec[2])(select('#overlay')
   .append('div')
   .classed('overlay', true)
-  .classed(spec[0], true)));
+  .classed(spec[0], true)
+  .node()));
 
 // Render color defs.
 select('#svg-filters').html(svgFilters({colors}));
