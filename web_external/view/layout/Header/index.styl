@@ -25,14 +25,14 @@
     -webkit-filter: img-color-filter($defaultLightIconColor);
     filter: img-color-filter($defaultLightIconColor);
 
-  .branding-icons img
+  .branding-icons img.show-color
     -webkit-filter img-color-filter($defaultLightIconColor);
     filter img-color-filter($defaultLightIconColor);
     width 10em;
     height 2em;
     margin 0.25em;
 
-  .branding-icons img:hover
+  .branding-icons img:hover.show-color
     /* Sneakiness here: we *remove* the color filter,
        so the native icon colors show through */
     -webkit-filter url(#drop-shadow);
