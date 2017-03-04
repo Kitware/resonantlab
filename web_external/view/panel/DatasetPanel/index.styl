@@ -11,25 +11,25 @@
 
   img.button
   image.button
-    -webkit-filter: imgColorFilter($defaultDarkIconColor);
-    filter: imgColorFilter($defaultDarkIconColor);
+    -webkit-filter: img-color-filter($defaultDarkIconColor);
+    filter: img-color-filter($defaultDarkIconColor);
 
   img.button.overridden
   image.button.overridden
-    -webkit-filter: imgColorFilter($overriddenIconColor);
-    filter: imgColorFilter($overriddenIconColor);
+    -webkit-filter: img-color-filter($overriddenIconColor);
+    filter: img-color-filter($overriddenIconColor);
 
   img.button:hover
   image.button:hover
     cursor: pointer;
-    -webkit-filter: imgColorFilter($darkRolloverColor);
-    filter: imgColorFilter($darkRolloverColor);
+    -webkit-filter: img-color-filter($darkRolloverColor);
+    filter: img-color-filter($darkRolloverColor);
 
   img.button.disabled
   image.button.disabled
     cursor: default;
-    -webkit-filter: imgColorFilter($disabledColor);
-    filter: imgColorFilter($disabledColor);
+    -webkit-filter: img-color-filter($disabledColor);
+    filter: img-color-filter($disabledColor);
 
   .no-dataset
     position: absolute;

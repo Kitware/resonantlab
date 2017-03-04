@@ -17,39 +17,39 @@
   align-items center
   justify-content space-between
 
-  img.headerButton
+  img.header-button
     width: 1.5em;
     height: 1.5em;
     margin: 0.75em;
     cursor: pointer;
-    -webkit-filter: imgColorFilter($defaultLightIconColor);
-    filter: imgColorFilter($defaultLightIconColor);
+    -webkit-filter: img-color-filter($defaultLightIconColor);
+    filter: img-color-filter($defaultLightIconColor);
 
-  #brandingIcons img
-    -webkit-filter imgColorFilter($defaultLightIconColor);
-    filter imgColorFilter($defaultLightIconColor);
+  .branding-icons img
+    -webkit-filter img-color-filter($defaultLightIconColor);
+    filter img-color-filter($defaultLightIconColor);
     width 10em;
     height 2em;
     margin 0.25em;
 
-  #brandingIcons img:hover
+  .branding-icons img:hover
     /* Sneakiness here: we *remove* the color filter,
        so the native icon colors show through */
-    -webkit-filter url(#dropShadow);
-    filter url(#dropShadow);
+    -webkit-filter url(#drop-shadow);
+    filter url(#drop-shadow);
 
-  #interfaceIcons
+  .interface-icons
     padding-right 0.25em;
 
-  #projectHeader
+  .project-header
     display flex;
     align-items center;
     padding-left 0.25em;
 
-  #projectHeader #projectIcons
+  .project-header .project-icons
     display inherit;
 
-  #projectName
+  .project-name
     background-color inherit;
     color inherit;
     border none;
@@ -57,13 +57,13 @@
     text-align center;
     box-shadow none;
 
-  img.headerButton.new
-    -webkit-filter imgColorFilter($newInfoIconColor);
-    filter imgColorFilter($newInfoIconColor);
+  img.header-button.new
+    -webkit-filter img-color-filter($newInfoIconColor);
+    filter img-color-filter($newInfoIconColor);
 
-  img.headerButton:hover
-    -webkit-filter imgColorFilter($lightRolloverColor) url(#dropShadow);
-    filter imgColorFilter($lightRolloverColor) url(#dropShadow);
+  img.header-button:hover
+    -webkit-filter img-color-filter($lightRolloverColor) url(#drop-shadow);
+    filter img-color-filter($lightRolloverColor) url(#drop-shadow);
 
   div.indicators
     position relative;

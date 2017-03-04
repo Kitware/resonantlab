@@ -16,14 +16,14 @@ class LoginDialog {
 
     this.el.html(html());
 
-    this.el.select('a#close-login').on('click', () => {
+    this.el.select('a.close-login').on('click', () => {
       this.clear();
       store.dispatch(action.lastMode());
     });
 
     // NOTE: need to use an arrow function for the callback to preserve "this"
     // context.
-    this.el.select('a#submit-login').on('click', () => this.submit());
+    this.el.select('a.submit-login').on('click', () => this.submit());
 
     // Also submit the form when "enter" is pressed on either text field.
     const enter = () => {
@@ -31,16 +31,16 @@ class LoginDialog {
         this.submit();
       }
     };
-    this.el.select('#g-login').on('keydown', enter);
-    this.el.select('#g-password').on('keydown', enter);
+    this.el.select('#loginfield').on('keydown', enter);
+    this.el.select('#passwordfield').on('keydown', enter);
   }
 
   submit () {
-    const username = this.el.select('#g-login').property('value');
-    const password = this.el.select('#g-password').property('value');
+    const username = this.el.select('#loginfield').property('value');
+    const password = this.el.select('#passwordfield').property('value');
 
     login(username, password).then(userInformation, xhr =>
-      this.el.select('.g-validation-failed-message')
+      this.el.select('.validation-failed-message')
       .text(xhr.responseJSON.message)
     ).then(info => {
       this.clear();
@@ -50,11 +50,11 @@ class LoginDialog {
   }
 
   clear () {
-    this.el.select('#g-login')
+    this.el.select('#loginfield')
       .property('value', '');
-    this.el.select('#g-password')
+    this.el.select('#passwordfield')
       .property('value', '');
-    this.el.select('.g-validation-failed-message')
+    this.el.select('.validation-failed-message')
       .text('');
   }
 }

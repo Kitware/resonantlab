@@ -1,24 +1,24 @@
 .in
   .modal-dialog
     .modal-content
-      form.modal-form#g-login-form(role="form")
+      form.modal-form(role="form")
 
         .modal-header
           h4.modal-title Log in
         
         .modal-body
           .form-group
-            label.control-label(for="g-login") Login or email
-            input.input-sm.form-control#g-login(type="text" placeholder="Enter login")
+            label.control-label(for="loginfield") Login or email
+            input.input-sm.form-control#loginfield(type="text" placeholder="Enter login")
           
           .form-group
-            label.control-label(for="g-password") Password
-            input.input-sm.form-control#g-password(type="password" placeholder="Enter password")
+            label.control-label(for="passwordfield") Password
+            input.input-sm.form-control#passwordfield(type="password" placeholder="Enter password")
           
-          .g-validation-failed-message
+          .validation-failed-message
 
-          .g-bottom-message Don't have an account yet? #[a.g-register-link Register here.] | #[a.g-forgot-password Forgot your password?]
+          .bottom-message Don't have an account yet? #[a.register-link Register here.] | #[a.forgot-password Forgot your password?]
 
         .modal-footer
-          a.btn.btn-default#close-login(data-dismiss="modal") Close
-          a.btn.btn-default#submit-login #[i.icon-login] Login
+          a.btn.btn-default.close-login(data-dismiss="modal") Close
+          a.btn.btn-default.submit-login #[i.icon-login] Login
