@@ -66,11 +66,11 @@ const userInformation = (user) => {
       return info;
     });
   } else {
-    return Promise.resolve({
+    return {
       login: null,
       private: null,
       public: null
-    });
+    };
   }
 };
 
