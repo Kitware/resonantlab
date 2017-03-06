@@ -123,13 +123,22 @@ observeStore(
 observeStore(next => {
   const project = next.get('project');
 
-  if (project) {
-    select('.project-name')
+  const header = select('#header');
+  const name = header.select('.project-name');
+  const visibility = header.select('.project-visibility');
+
+  if (project.get('id')) {
+    // Make the project data elements visible and fill in the appropriate
+    // values.
+    name.style('display', null)
       .text(project.get('name'));
 
-    select('#header')
-      .select('.project-visibility')
+    visibility.style('display', null)
       .attr('src', project.get('visibility') === 'public' ? publicIcon : privateIcon);
+  } else {
+    // If there's no open project, hide the project data elements.
+    name.style('display', 'none');
+    visibility.style('display', 'none');
   }
 }, s => s.get('project'));
 
