@@ -75,10 +75,17 @@ const reducer = (state = initial, action = {}) => {
 
     case actionType.openProject:
       newState = newState.withMutations(s => {
-        s.delete('project')
-          .setIn(['project', 'id'], action.id)
+        s.setIn(['project', 'id'], action.id)
           .setIn(['project', 'name'], action.name)
           .setIn(['project', 'visibility'], action.visibility);
+      });
+      break;
+
+    case actionType.closeProject:
+      newState = newState.withMutations(s => {
+        s.setIn(['project', 'id'], null)
+          .setIn(['project', 'name'], null)
+          .setIn(['project', 'visibility'], null);
       });
       break;
 
