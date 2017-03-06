@@ -73,7 +73,13 @@ class StartScreen {
     });
 
     this.el.select('.log-out').on('click', () => {
-      logout().then(() => store.dispatch(action.logout()));
+      logout().then(() => {
+        // Close any open projects.
+        store.dispatch(action.closeProject());
+
+        // Change the logged-out state.
+        store.dispatch(action.logout());
+      });
     });
 
     this.el.select('.close-overlay').on('click', () => store.dispatch(action.switchMode(appMode.project)));
