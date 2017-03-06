@@ -7,7 +7,8 @@ import createLogger from 'redux-logger';
 import { reducer } from '~reslab/redux/reducer';
 
 const logger = createLogger({
-  stateTransformer: s => s.toJS()
+  stateTransformer: s => s.toJS(),
+  diff: true
 });
 const store = createStore(reducer, applyMiddleware(thunk, promise, logger));
 
