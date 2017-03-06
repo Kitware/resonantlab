@@ -85,10 +85,8 @@ class StartScreen {
     this.el.select('.close-overlay').on('click', () => store.dispatch(action.switchMode(appMode.project)));
   }
 
-  render () {
-    const state = store.getState();
-    const loggedIn = !!currentUser();
-    const username = state.getIn(['user', 'login']);
+  render ({username, openProject}) {
+    const loggedIn = !!username;
 
     // Display "logout" or "login/register" depending on login state.
     this.el.select('.log-out')
@@ -109,9 +107,8 @@ class StartScreen {
       .classed('clickable', loggedIn);
 
     // Only display the "close" button if there's already a project open.
-    const showClose = !!state.getIn(['project', 'id']);
     this.el.select('.close-overlay')
-      .style('display', showClose ? null : 'none');
+      .style('display', openProject ? null : 'none');
   }
 }
 

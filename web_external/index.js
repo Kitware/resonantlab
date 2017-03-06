@@ -93,7 +93,10 @@ observeStore(next => {
       break;
 
     case appMode.startScreen:
-      startScreen.render();
+      startScreen.render({
+        username: next.getIn(['user', 'login']),
+        openProject: !!next.getIn(['project', 'id'])
+      });
       switchOverlay('start-screen');
       break;
 
@@ -105,7 +108,10 @@ observeStore(next => {
 
 // Update start screen with login/logout changes.
 observeStore(
-  next => startScreen.render(),
+  next => startScreen.render({
+    username: next.getIn(['user', 'login']),
+    openProject: !!next.getIn(['project', 'id'])
+  }),
   s => s.get('user')
 );
 
