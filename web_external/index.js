@@ -7,7 +7,8 @@ import { action,
          store,
          observeStore,
          appMode } from './redux';
-import { switchOverlay,
+import { initializeOverlays,
+         switchOverlay,
          userInformation } from './util';
 
 import { publicIcon,
@@ -38,17 +39,11 @@ select('#app').html(html);
 header.initialize('#header');
 
 // Instantiate the overlays.
-const overlays = [
+initializeOverlays(select('#overlay'), [
   ['start-screen', startScreen.initialize, startScreen],
   ['login-dialog', loginDialog.initialize, loginDialog],
   ['open-project-dialog', openProjectDialog.initialize, openProjectDialog]
-];
-
-overlays.forEach(spec => spec[1].bind(spec[2])(select('#overlay')
-  .append('div')
-  .classed('overlay', true)
-  .classed(spec[0], true)
-  .node()));
+]);
 
 // Render color defs.
 select('#svg-filters').html(svgFilters({colors}));
