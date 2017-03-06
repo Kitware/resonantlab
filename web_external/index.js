@@ -78,11 +78,6 @@ Promise.all(promises).then(
   }
 );
 
-// Log state changes.
-observeStore(next => {
-  console.log(next.toJS());
-});
-
 // Render state changes.
 //
 // Change "application mode".
