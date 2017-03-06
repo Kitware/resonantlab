@@ -76,7 +76,7 @@ class StartScreen {
       logout().then(() => store.dispatch(action.logout()));
     });
 
-    this.el.select('.close-overlay').on('click', () => store.dispatch(action.lastMode()));
+    this.el.select('.close-overlay').on('click', () => store.dispatch(action.switchMode(appMode.project)));
   }
 
   render () {
