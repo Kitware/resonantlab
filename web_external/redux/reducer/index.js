@@ -11,7 +11,11 @@ const initial = Immutable.fromJS({
     private: null,
     public: null
   },
-  project: null,
+  project: {
+    id: null,
+    name: null,
+    visibility: null
+  },
   libPaths: {
     data: null,
     projects: null,
