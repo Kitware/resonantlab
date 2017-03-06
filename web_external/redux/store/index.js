@@ -1,8 +1,17 @@
-import { createStore } from 'redux';
+import { applyMiddleware,
+         createStore } from 'redux';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise';
+import createLogger from 'redux-logger';
 
 import { reducer } from '~reslab/redux/reducer';
 
-const store = createStore(reducer);
+const logger = createLogger({
+  stateTransformer: s => s.toJS(),
+  collapsed: () => true,
+  diff: true
+});
+const store = createStore(reducer, applyMiddleware(thunk, promise, logger));
 
 // Taken from https://github.com/reactjs/redux/issues/303#issuecomment-125184409
 //
