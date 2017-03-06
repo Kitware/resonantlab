@@ -76,7 +76,7 @@ class StartScreen {
       logout().then(() => store.dispatch(action.logout()));
     });
 
-    this.el.select('.close-overlay').on('click', () => store.dispatch(action.lastMode()));
+    this.el.select('.close-overlay').on('click', () => store.dispatch(action.switchMode(appMode.project)));
   }
 
   render () {
@@ -102,9 +102,8 @@ class StartScreen {
       .classed('disabled', !loggedIn)
       .classed('clickable', loggedIn);
 
-    // Only display the "close" button if the start screen was invoked from a
-    // different part of the app.
-    const showClose = state.get('mode') !== state.get('lastMode');
+    // Only display the "close" button if there's already a project open.
+    const showClose = !!state.getIn(['project', 'id']);
     this.el.select('.close-overlay')
       .style('display', showClose ? null : 'none');
   }
