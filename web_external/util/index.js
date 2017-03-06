@@ -4,6 +4,29 @@ import { restRequest } from 'girder/rest';
 
 import { store } from '~reslab/redux';
 
+const initializeOverlays = (selector, overlays) => {
+  // This function creates elements to hold each "overlay" in the application.
+  // The `overlays` arguments holds an array of arrays, each of which serves as
+  // a specification for how to construct an overlay. Each spec contains 2
+  // required and 1 optional item:
+  //
+  // spec[0] is the name of the overlay, formatted as a CSS class name (i.e., in
+  // dash-case).
+  //
+  // spec[1] is a function that takes a CSS selector or a raw element to house
+  // the overlay, and instantiates it inside that element.
+  //
+  // spec[2] is an optional object to use as the "this" context for the
+  // initializer function given in spec[1].
+  overlays.forEach(spec =>
+    spec[1].bind(spec[2])(
+      selector.append('div')
+        .classed('overlay', true)
+        .classed(spec[0], true)
+        .node())
+  );
+};
+
 const switchOverlay = (which) => {
   select('#overlay')
     .style('display', which === null ? 'none' : null)
@@ -121,6 +144,7 @@ const getProjects = (folderId) => {
 };
 
 export {
+  initializeOverlays,
   switchOverlay,
   gatherProjectInfo,
   initializeNewProject,
