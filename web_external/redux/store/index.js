@@ -6,7 +6,9 @@ import createLogger from 'redux-logger';
 
 import { reducer } from '~reslab/redux/reducer';
 
-const logger = createLogger();
+const logger = createLogger({
+  stateTransformer: s => s.toJS()
+});
 const store = createStore(reducer, applyMiddleware(thunk, promise, logger));
 
 // Taken from https://github.com/reactjs/redux/issues/303#issuecomment-125184409
