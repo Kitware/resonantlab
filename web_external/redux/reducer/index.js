@@ -14,8 +14,7 @@ const initial = Immutable.fromJS({
   project: {
     id: null,
     name: null,
-    visibility: null,
-    dataset: null
+    visibility: null
   },
   dataset: {
     loading: false,
@@ -85,8 +84,7 @@ const reducer = (state = initial, action = {}) => {
       newState = newState.withMutations(s => {
         s.setIn(['project', 'id'], action.id)
           .setIn(['project', 'name'], action.name)
-          .setIn(['project', 'visibility'], action.visibility)
-          .setIn(['project', 'dataset'], action.dataset);
+          .setIn(['project', 'visibility'], action.visibility);
       });
       break;
 
@@ -95,7 +93,10 @@ const reducer = (state = initial, action = {}) => {
         s.setIn(['project', 'id'], null)
           .setIn(['project', 'name'], null)
           .setIn(['project', 'visibility'], null)
-          .setIn(['project', 'dataset'], null);
+          .setIn(['dataset', 'data'], null)
+          .setIn(['panel', 'dataset', 'title'], null)
+          .setIn(['panel', 'matching', 'title'], null)
+          .setIn(['panel', 'vis', 'title'], null);
       });
       break;
 

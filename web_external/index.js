@@ -169,7 +169,7 @@ observeStore(next => {
 observeStore(next => {
   const panels = next.get('panel');
 
-  datasetPanel.setTitle(panels.getIn(['dataset', 'title']));
-  matchingPanel.setTitle(panels.getIn(['matching', 'title']));
-  visPanel.setTitle(panels.getIn(['vis', 'title']));
+  datasetPanel.setTitle(panels.getIn(['dataset', 'title']) || 'No Dataset Loaded');
+  matchingPanel.setTitle(panels.getIn(['matching', 'title']) || 'Matching -/-');
+  visPanel.setTitle(panels.getIn(['vis', 'title']) || 'No Visualization Loaded');
 }, s => s.get('panel'));
