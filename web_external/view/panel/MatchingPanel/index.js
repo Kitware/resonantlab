@@ -29,6 +29,11 @@ class MatchingPanel {
       store.dispatch(action.togglePanel('matching'));
     });
   }
+
+  setTitle (title) {
+    this.el.select('h2.title')
+      .text(title);
+  }
 }
 
 const matchingPanel = new MatchingPanel();

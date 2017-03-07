@@ -15,6 +15,7 @@ import scatterplotIcon from './scatterplot.svg';
 import shareIcon from './share.svg';
 import swapIcon from './swap.svg';
 import warningIcon from './warning.svg';
+import throbberIcon from './throbber.gif';
 
 export {
   closeIcon,
@@ -33,5 +34,6 @@ export {
   scatterplotIcon,
   shareIcon,
   swapIcon,
-  warningIcon
+  warningIcon,
+  throbberIcon
 };

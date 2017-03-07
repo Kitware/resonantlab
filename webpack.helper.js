@@ -77,7 +77,7 @@ module.exports = function (config, data) {
       loaders: ['style-loader', 'css-loader', 'stylus-loader']
     },
     {
-      test: /\.svg$|\.png$/,
+      test: /\.svg$|\.png$|\.gif$/,
       include: sourceDirs,
       loader: 'url-loader'
     }

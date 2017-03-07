@@ -20,6 +20,16 @@ closeProject: []
 updateProjectName:
   - name
 
+datasetLoading:
+  - loading
+
+setPanelTitle:
+  - panel
+  - title
+
+setData:
+  - data
+
 setLibraryPaths:
   - data
   - projects

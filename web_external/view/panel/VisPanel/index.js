@@ -31,6 +31,11 @@ class VisPanel {
       store.dispatch(action.togglePanel('vis'));
     });
   }
+
+  setTitle (title) {
+    this.el.select('h2.title')
+      .text(title);
+  }
 }
 
 const visPanel = new VisPanel();

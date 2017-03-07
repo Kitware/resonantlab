@@ -8,6 +8,7 @@ import { datasetIcon,
          swapIcon,
          gearIcon,
          infoIcon,
+         throbberIcon,
          warningIcon } from '~reslab/image/icon';
 
 import { action,
@@ -30,6 +31,18 @@ class DatasetPanel {
       this.el.classed('targeted', !this.el.classed('targeted'));
       store.dispatch(action.togglePanel('dataset'));
     });
+  }
+
+  setTitle (title) {
+    this.el.select('h2.title')
+      .text(title);
+  }
+
+  showThrobber (loading) {
+    this.el.select('img.status')
+      .classed('warning', !loading)
+      .classed('show-color', loading)
+      .attr('src', loading ? throbberIcon : warningIcon);
   }
 }
 

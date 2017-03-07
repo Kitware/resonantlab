@@ -1,4 +1,7 @@
 import { select } from 'd3-selection';
+import Papa from 'papaparse';
+
+import { restRequest } from 'girder/rest';
 
 import html from './index.jade';
 import './index.styl';
@@ -10,7 +13,8 @@ import { closeIcon,
 import { store,
          action,
          appMode } from '~reslab/redux';
-import { gatherProjectInfo } from '~reslab/util';
+import { gatherProjectInfo,
+         gatherDatasetInfo } from '~reslab/util';
 
 class OpenProjectDialog {
   initialize (selector) {
@@ -45,6 +49,35 @@ class OpenProjectDialog {
 
         const project = gatherProjectInfo(d);
         store.dispatch(action.openProject(project.id, project.name, project.visibility));
+
+        if (project.dataset) {
+          store.dispatch(action.datasetLoading(true));
+
+          // Download the data in order to display it in the application.
+          restRequest({
+            type: 'GET',
+            path: `/item/${project.dataset}/download`,
+            dataType: 'text'
+          }).then(data => {
+            const results = Papa.parse(data, {
+              header: true,
+              dynamicTyping: true
+            });
+
+            store.dispatch(action.datasetLoading(false));
+            store.dispatch(action.setData(results.data));
+          });
+
+          // Get information about the dataset in order to set application
+          // state.
+          restRequest({
+            type: 'GET',
+            path: `/item/${project.dataset}`
+          }).then(item => {
+            const dataset = gatherDatasetInfo(item);
+            store.dispatch(action.setPanelTitle('dataset', dataset.name));
+          });
+        }
       })
       .classed('circle-button', true);
 

@@ -16,6 +16,10 @@ const initial = Immutable.fromJS({
     name: null,
     visibility: null
   },
+  dataset: {
+    loading: false,
+    data: null
+  },
   libPaths: {
     data: null,
     projects: null,
@@ -23,13 +27,16 @@ const initial = Immutable.fromJS({
   },
   panel: {
     dataset: {
-      open: false
+      open: false,
+      title: 'No Dataset Loaded'
     },
     matching: {
-      open: false
+      open: false,
+      title: 'Matching -/-'
     },
     vis: {
-      open: false
+      open: false,
+      title: 'No Visualization Selected'
     }
   }
 });
@@ -85,12 +92,28 @@ const reducer = (state = initial, action = {}) => {
       newState = newState.withMutations(s => {
         s.setIn(['project', 'id'], null)
           .setIn(['project', 'name'], null)
-          .setIn(['project', 'visibility'], null);
+          .setIn(['project', 'visibility'], null)
+          .setIn(['dataset', 'data'], null)
+          .setIn(['panel', 'dataset', 'title'], null)
+          .setIn(['panel', 'matching', 'title'], null)
+          .setIn(['panel', 'vis', 'title'], null);
       });
       break;
 
     case actionType.updateProjectName:
       newState = newState.setIn(['project', 'name'], action.name);
+      break;
+
+    case actionType.datasetLoading:
+      newState = newState.setIn(['dataset', 'loading'], action.loading);
+      break;
+
+    case actionType.setData:
+      newState = newState.setIn(['dataset', 'data'], action.data);
+      break;
+
+    case actionType.setPanelTitle:
+      newState = newState.setIn(['panel', action.panel, 'title'], action.title);
       break;
 
     case actionType.setLibraryPaths:
