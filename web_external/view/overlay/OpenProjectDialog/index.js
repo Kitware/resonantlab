@@ -50,6 +50,8 @@ class OpenProjectDialog {
         store.dispatch(action.openProject(project.id, project.name, project.visibility));
 
         if (project.dataset) {
+          store.dispatch(action.datasetLoading(true));
+
           restRequest({
             type: 'GET',
             path: `/item/${project.dataset}/download`,
@@ -60,6 +62,7 @@ class OpenProjectDialog {
               dynamicTyping: true
             });
 
+            store.dispatch(action.datasetLoading(false));
             store.dispatch(action.setData(results.data));
           });
         }

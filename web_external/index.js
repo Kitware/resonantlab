@@ -138,6 +138,12 @@ observeStore(next => {
   }
 }, s => s.get('project'));
 
+// Show "data loading" throbber.
+observeStore(next => {
+  const loading = next.getIn(['dataset', 'loading']);
+  datasetPanel.showThrobber(loading);
+}, s => s.getIn(['dataset', 'loading']));
+
 // Display changed data.
 observeStore(next => {
   console.log(next.getIn(['dataset', 'data']));

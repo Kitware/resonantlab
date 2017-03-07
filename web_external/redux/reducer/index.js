@@ -18,6 +18,7 @@ const initial = Immutable.fromJS({
     dataset: null
   },
   dataset: {
+    loading: false,
     data: null
   },
   libPaths: {
@@ -97,6 +98,10 @@ const reducer = (state = initial, action = {}) => {
 
     case actionType.updateProjectName:
       newState = newState.setIn(['project', 'name'], action.name);
+      break;
+
+    case actionType.datasetLoading:
+      newState = newState.setIn(['dataset', 'loading'], action.loading);
       break;
 
     case actionType.setData:

@@ -20,6 +20,9 @@ closeProject: []
 updateProjectName:
   - name
 
+datasetLoading:
+  - loading
+
 setData:
   - data
 
