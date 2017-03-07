@@ -1,53 +1,54 @@
 @require '../../../style/colors.styl';
 
-#dataset-panel .content
-  display: flex;
-  flex-direction: column;
+#dataset-panel
+  .content
+    display: flex;
+    flex-direction: column;
 
-  .dataset-overview
-    width: calc(100% - 2em);
-    font-weight: 700;
-    padding: 1em;
+    .dataset-overview
+      width: calc(100% - 2em);
+      font-weight: 700;
+      padding: 1em;
 
-  img.button
-  image.button
-    -webkit-filter: img-color-filter($defaultDarkIconColor);
-    filter: img-color-filter($defaultDarkIconColor);
+    img.button
+    image.button
+      -webkit-filter: img-color-filter($defaultDarkIconColor);
+      filter: img-color-filter($defaultDarkIconColor);
 
-  img.button.overridden
-  image.button.overridden
-    -webkit-filter: img-color-filter($overriddenIconColor);
-    filter: img-color-filter($overriddenIconColor);
+    img.button.overridden
+    image.button.overridden
+      -webkit-filter: img-color-filter($overriddenIconColor);
+      filter: img-color-filter($overriddenIconColor);
 
-  img.button:hover
-  image.button:hover
-    cursor: pointer;
-    -webkit-filter: img-color-filter($darkRolloverColor);
-    filter: img-color-filter($darkRolloverColor);
+    img.button:hover
+    image.button:hover
+      cursor: pointer;
+      -webkit-filter: img-color-filter($darkRolloverColor);
+      filter: img-color-filter($darkRolloverColor);
 
-  img.button.disabled
-  image.button.disabled
-    cursor: default;
-    -webkit-filter: img-color-filter($disabledColor);
-    filter: img-color-filter($disabledColor);
+    img.button.disabled
+    image.button.disabled
+      cursor: default;
+      -webkit-filter: img-color-filter($disabledColor);
+      filter: img-color-filter($disabledColor);
 
-  .no-dataset
-    position: absolute;
-    top: 0em;
-    right: 0em;
-    margin: 1em;
-    max-width: 20em;
+    .no-dataset
+      position: absolute;
+      top: 0em;
+      right: 0em;
+      margin: 1em;
+      max-width: 20em;
 
-  .overview
-    fill: $dataOverviewColor;
+    .overview
+      fill: $dataOverviewColor;
 
-  .filtered
-    fill: $dataFilteredColor;
+    .filtered
+      fill: $dataFilteredColor;
 
-  .page
-    fill: $dataCurrentPageColor;
+    .page
+      fill: $dataCurrentPageColor;
 
-#dataset-panel .indicator-icons
-  img.status.show-color
-    -webkit-filter url(#drop-shadow);
-    filter url(#drop-shadow);
+  .indicator-icons
+    img.status.show-color
+      -webkit-filter url(#drop-shadow);
+      filter url(#drop-shadow);
