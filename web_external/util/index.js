@@ -87,7 +87,8 @@ const gatherProjectInfo = (item) => {
   return {
     name: item.name,
     id: item._id,
-    visibility: item.folderId === state.getIn(['user', 'public']) ? 'public' : 'private'
+    visibility: item.folderId === state.getIn(['user', 'public']) ? 'public' : 'private',
+    dataset: item.meta && item.meta.dataset || null
   };
 };
 
@@ -106,7 +107,7 @@ const initializeNewProject = () => {
       type: 'PUT',
       path: `/item/${item._id}/metadata`,
       data: JSON.stringify({
-        datasets: [],
+        dataset: null,
         itemType: 'project',
         matchings: [],
         preferredWidgets: [],

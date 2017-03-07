@@ -1,4 +1,7 @@
 import { select } from 'd3-selection';
+import Papa from 'papaparse';
+
+import { restRequest } from 'girder/rest';
 
 import html from './index.jade';
 import './index.styl';
@@ -45,6 +48,21 @@ class OpenProjectDialog {
 
         const project = gatherProjectInfo(d);
         store.dispatch(action.openProject(project.id, project.name, project.visibility));
+
+        if (project.dataset) {
+          restRequest({
+            type: 'GET',
+            path: `/item/${project.dataset}/download`,
+            dataType: 'text'
+          }).then(data => {
+            const results = Papa.parse(data, {
+              header: true,
+              dynamicTyping: true
+            });
+
+            store.dispatch(action.setData(results.data));
+          });
+        }
       })
       .classed('circle-button', true);
 

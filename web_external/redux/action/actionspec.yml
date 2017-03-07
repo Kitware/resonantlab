@@ -20,6 +20,9 @@ closeProject: []
 updateProjectName:
   - name
 
+setData:
+  - data
+
 setLibraryPaths:
   - data
   - projects

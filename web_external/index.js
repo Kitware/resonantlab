@@ -138,6 +138,11 @@ observeStore(next => {
   }
 }, s => s.get('project'));
 
+// Display changed data.
+observeStore(next => {
+  console.log(next.getIn(['dataset', 'data']));
+}, s => s.getIn(['dataset', 'data']));
+
 // Resize the panels.
 observeStore(next => {
   const panels = next.get('panel').toJS();

@@ -14,7 +14,11 @@ const initial = Immutable.fromJS({
   project: {
     id: null,
     name: null,
-    visibility: null
+    visibility: null,
+    dataset: null
+  },
+  dataset: {
+    data: null
   },
   libPaths: {
     data: null,
@@ -77,7 +81,8 @@ const reducer = (state = initial, action = {}) => {
       newState = newState.withMutations(s => {
         s.setIn(['project', 'id'], action.id)
           .setIn(['project', 'name'], action.name)
-          .setIn(['project', 'visibility'], action.visibility);
+          .setIn(['project', 'visibility'], action.visibility)
+          .setIn(['project', 'dataset'], action.dataset);
       });
       break;
 
@@ -85,12 +90,17 @@ const reducer = (state = initial, action = {}) => {
       newState = newState.withMutations(s => {
         s.setIn(['project', 'id'], null)
           .setIn(['project', 'name'], null)
-          .setIn(['project', 'visibility'], null);
+          .setIn(['project', 'visibility'], null)
+          .setIn(['project', 'dataset'], null);
       });
       break;
 
     case actionType.updateProjectName:
       newState = newState.setIn(['project', 'name'], action.name);
+      break;
+
+    case actionType.setData:
+      newState = newState.setIn(['dataset', 'data'], action.data);
       break;
 
     case actionType.setLibraryPaths:
