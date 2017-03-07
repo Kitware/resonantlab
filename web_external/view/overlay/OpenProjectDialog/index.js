@@ -13,7 +13,8 @@ import { closeIcon,
 import { store,
          action,
          appMode } from '~reslab/redux';
-import { gatherProjectInfo } from '~reslab/util';
+import { gatherProjectInfo,
+         gatherDatasetInfo } from '~reslab/util';
 
 class OpenProjectDialog {
   initialize (selector) {
@@ -52,6 +53,7 @@ class OpenProjectDialog {
         if (project.dataset) {
           store.dispatch(action.datasetLoading(true));
 
+          // Download the data in order to display it in the application.
           restRequest({
             type: 'GET',
             path: `/item/${project.dataset}/download`,
@@ -64,6 +66,16 @@ class OpenProjectDialog {
 
             store.dispatch(action.datasetLoading(false));
             store.dispatch(action.setData(results.data));
+          });
+
+          // Get information about the dataset in order to set application
+          // state.
+          restRequest({
+            type: 'GET',
+            path: `/item/${project.dataset}`
+          }).then(item => {
+            const dataset = gatherDatasetInfo(item);
+            store.dispatch(action.setPanelTitle('dataset', dataset.name));
           });
         }
       })

@@ -28,13 +28,16 @@ const initial = Immutable.fromJS({
   },
   panel: {
     dataset: {
-      open: false
+      open: false,
+      title: 'No Dataset Loaded'
     },
     matching: {
-      open: false
+      open: false,
+      title: 'Matching -/-'
     },
     vis: {
-      open: false
+      open: false,
+      title: 'No Visualization Selected'
     }
   }
 });
@@ -106,6 +109,10 @@ const reducer = (state = initial, action = {}) => {
 
     case actionType.setData:
       newState = newState.setIn(['dataset', 'data'], action.data);
+      break;
+
+    case actionType.setPanelTitle:
+      newState = newState.setIn(['panel', action.panel, 'title'], action.title);
       break;
 
     case actionType.setLibraryPaths:

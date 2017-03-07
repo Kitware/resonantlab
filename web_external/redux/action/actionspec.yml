@@ -23,6 +23,10 @@ updateProjectName:
 datasetLoading:
   - loading
 
+setPanelTitle:
+  - panel
+  - title
+
 setData:
   - data
 

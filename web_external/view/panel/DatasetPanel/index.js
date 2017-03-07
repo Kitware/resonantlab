@@ -33,6 +33,11 @@ class DatasetPanel {
     });
   }
 
+  setTitle (title) {
+    this.el.select('h2.title')
+      .text(title);
+  }
+
   showThrobber (loading) {
     this.el.select('img.status')
       .classed('warning', !loading)

@@ -92,6 +92,12 @@ const gatherProjectInfo = (item) => {
   };
 };
 
+const gatherDatasetInfo = (item) => {
+  return {
+    name: item.name
+  };
+};
+
 const initializeNewProject = () => {
   const folder = projectFolder();
 
@@ -148,6 +154,7 @@ export {
   initializeOverlays,
   switchOverlay,
   gatherProjectInfo,
+  gatherDatasetInfo,
   initializeNewProject,
   userInformation,
   currentUser,

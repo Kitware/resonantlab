@@ -164,3 +164,12 @@ observeStore(next => {
   selectAll('section.targeted')
     .style('width', style);
 }, s => s.get('panel'));
+
+// Retitle the panels.
+observeStore(next => {
+  const panels = next.get('panel');
+
+  datasetPanel.setTitle(panels.getIn(['dataset', 'title']));
+  matchingPanel.setTitle(panels.getIn(['matching', 'title']));
+  visPanel.setTitle(panels.getIn(['vis', 'title']));
+}, s => s.get('panel'));
