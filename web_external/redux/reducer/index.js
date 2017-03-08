@@ -1,3 +1,4 @@
+import candelaComponents from 'candela/components';
 import Immutable from 'immutable';
 
 import { actionType } from '~reslab/redux/action';
@@ -19,6 +20,9 @@ const initial = Immutable.fromJS({
   dataset: {
     loading: false,
     data: null
+  },
+  vis: {
+    component: null
   },
   libPaths: {
     data: null,
@@ -94,6 +98,7 @@ const reducer = (state = initial, action = {}) => {
           .setIn(['project', 'name'], null)
           .setIn(['project', 'visibility'], null)
           .setIn(['dataset', 'data'], null)
+          .setIn(['vis', 'component'], null)
           .setIn(['panel', 'dataset', 'title'], null)
           .setIn(['panel', 'matching', 'title'], null)
           .setIn(['panel', 'vis', 'title'], null);
@@ -110,6 +115,10 @@ const reducer = (state = initial, action = {}) => {
 
     case actionType.setData:
       newState = newState.setIn(['dataset', 'data'], action.data);
+      break;
+
+    case actionType.setVis:
+      newState = newState.setIn(['vis', 'component'], candelaComponents[action.vis]);
       break;
 
     case actionType.setPanelTitle:

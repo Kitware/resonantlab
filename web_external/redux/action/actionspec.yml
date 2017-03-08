@@ -30,6 +30,9 @@ setPanelTitle:
 setData:
   - data
 
+setVis:
+  - vis
+
 setLibraryPaths:
   - data
   - projects

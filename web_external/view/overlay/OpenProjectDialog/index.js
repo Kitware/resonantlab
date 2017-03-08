@@ -79,6 +79,11 @@ class OpenProjectDialog {
             store.dispatch(action.setPanelTitle('dataset', dataset.name));
           });
         }
+
+        if (project.vis) {
+          store.dispatch(action.setVis(project.vis));
+          store.dispatch(action.setPanelTitle('vis', project.vis));
+        }
       })
       .classed('circle-button', true);
 
