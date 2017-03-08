@@ -152,6 +152,9 @@ observeStore(next => {
   if (data) {
     datasetPanel.updateData(data[0], data.slice(1));
     datasetPanel.showDataTable(true);
+  } else {
+    datasetPanel.removeData();
+    datasetPanel.showDataTable(false);
   }
 }, s => s.getIn(['dataset', 'data']));
 

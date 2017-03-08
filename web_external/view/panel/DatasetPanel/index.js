@@ -47,6 +47,17 @@ class DatasetPanel {
       .attr('src', loading ? throbberIcon : warningIcon);
   }
 
+  removeData () {
+    const table = this.el.select('table.data-table');
+    table.select('thead tr')
+      .selectAll('th')
+      .remove();
+
+    table.select('tbody')
+      .selectAll('tr')
+      .remove();
+  }
+
   updateData (header, data) {
     const table = this.el.select('table.data-table');
 
