@@ -22,6 +22,7 @@
     "babel-preset-es2015": "^6.18.0",
     "candela": "^0.10.2",
     "d3-selection": "^1.0.2",
+    "datatables-all": "^1.10.13",
     "file-loader": "^0.9.0",
     "immutable": "^3.8.1",
     "jade": "^1.11.0",

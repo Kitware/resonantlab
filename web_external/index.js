@@ -29,6 +29,7 @@ import './index.styl';
 import './view/panel/index.styl';
 import './style/accordion.styl';
 import './style/forms/index.css';
+import 'datatables-all/media/css/jquery.dataTables.css';
 
 import colors from './style/colors.json';
 
@@ -146,7 +147,12 @@ observeStore(next => {
 
 // Display changed data.
 observeStore(next => {
-  console.log(next.getIn(['dataset', 'data']));
+  const data = next.getIn(['dataset', 'data']);
+
+  if (data) {
+    datasetPanel.updateData(data[0], data.slice(1));
+    datasetPanel.showDataTable(true);
+  }
 }, s => s.getIn(['dataset', 'data']));
 
 // Resize the panels.

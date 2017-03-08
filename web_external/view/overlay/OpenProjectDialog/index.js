@@ -48,6 +48,7 @@ class OpenProjectDialog {
         store.dispatch(action.switchMode(appMode.project));
 
         const project = gatherProjectInfo(d);
+        store.dispatch(action.closeProject());
         store.dispatch(action.openProject(project.id, project.name, project.visibility));
 
         if (project.dataset) {
@@ -60,8 +61,8 @@ class OpenProjectDialog {
             dataType: 'text'
           }).then(data => {
             const results = Papa.parse(data, {
-              header: true,
-              dynamicTyping: true
+              dynamicTyping: true,
+              skipEmptyLines: true
             });
 
             store.dispatch(action.datasetLoading(false));
