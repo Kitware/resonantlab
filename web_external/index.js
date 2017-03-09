@@ -149,13 +149,14 @@ observeStore(next => {
 observeStore(next => {
   const data = next.getIn(['dataset', 'data']);
   const vis = next.getIn(['vis', 'component']);
+  const matchings = next.get('matchings').toJS();
 
   if (data) {
     datasetPanel.updateData(data[0], data.slice(1));
     datasetPanel.showDataTable(true);
 
     if (vis) {
-      visPanel.instantiate(vis, data);
+      visPanel.instantiate(vis, data, matchings);
     }
   } else {
     datasetPanel.removeData();
@@ -173,8 +174,9 @@ observeStore(next => {
 
   const vis = next.getIn(['vis', 'component']);
   const data = next.getIn(['dataset', 'data']);
+  const matchings = next.get('matchings').toJS();
   if (vis && data) {
-    visPanel.instantiate(vis, data);
+    visPanel.instantiate(vis, data, matchings);
   }
 }, s => s.getIn(['vis', 'component']));
 

@@ -24,6 +24,7 @@ const initial = Immutable.fromJS({
   vis: {
     component: null
   },
+  matchings: {},
   libPaths: {
     data: null,
     projects: null,
@@ -119,6 +120,10 @@ const reducer = (state = initial, action = {}) => {
 
     case actionType.setVis:
       newState = newState.setIn(['vis', 'component'], candelaComponents[action.vis]);
+      break;
+
+    case actionType.setMatchings:
+      newState = newState.set('matchings', Immutable.fromJS(action.matchings));
       break;
 
     case actionType.setPanelTitle:

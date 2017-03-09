@@ -80,6 +80,8 @@ class OpenProjectDialog {
           });
         }
 
+        store.dispatch(action.setMatchings(project.matchings));
+
         if (project.vis) {
           store.dispatch(action.setVis(project.vis));
           store.dispatch(action.setPanelTitle('vis', project.vis));

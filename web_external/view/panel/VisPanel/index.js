@@ -37,7 +37,7 @@ class VisPanel {
       .text(title);
   }
 
-  instantiate (VisComponent, data) {
+  instantiate (VisComponent, data, matchings) {
     const visEl = this.el.select('.visualization')
       .append('div')
       .node();
@@ -52,12 +52,10 @@ class VisPanel {
       return rec;
     });
 
-    this.vis = new VisComponent(visEl, {
-      data: shaped,
-      x: 'longitude',
-      y: 'latitude',
-      fields: ['longitude']
+    const options = Object.assign({}, matchings, {
+      data: shaped
     });
+    this.vis = new VisComponent(visEl, options);
 
     this.vis.render();
   }
