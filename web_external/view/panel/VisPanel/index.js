@@ -36,6 +36,37 @@ class VisPanel {
     this.el.select('h2.title')
       .text(title);
   }
+
+  instantiate (VisComponent, data) {
+    const visEl = this.el.select('.visualization')
+      .append('div')
+      .node();
+
+    const headers = data[0];
+    const shaped = data.slice(1).map(d => {
+      let rec = {};
+      headers.forEach((h, i) => {
+        rec[h] = d[i];
+      });
+
+      return rec;
+    });
+
+    this.vis = new VisComponent(visEl, {
+      data: shaped,
+      x: 'longitude',
+      y: 'latitude',
+      fields: ['longitude']
+    });
+
+    this.vis.render();
+  }
+
+  remove () {
+    this.el.select('.visualization')
+      .select('div')
+      .remove();
+  }
 }
 
 const visPanel = new VisPanel();
