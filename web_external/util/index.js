@@ -88,7 +88,9 @@ const gatherProjectInfo = (item) => {
     name: item.name,
     id: item._id,
     visibility: item.folderId === state.getIn(['user', 'public']) ? 'public' : 'private',
-    dataset: item.meta && item.meta.dataset || null
+    dataset: item.meta && item.meta.dataset || null,
+    vis: item.meta && item.meta.vis || null,
+    matchings: item.meta && item.meta.matchings || {}
   };
 };
 
