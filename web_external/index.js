@@ -107,14 +107,13 @@ observeStore(next => {
   }
 }, s => s.get('mode'));
 
-// Update start screen with login/logout changes.
-observeStore(
-  next => startScreen.render({
-    username: next.getIn(['user', 'login']),
-    openProject: !!next.getIn(['project', 'id'])
-  }),
-  s => s.get('user')
-);
+// Update start screen with login/logout/project changes.
+const updateStartScreen = state => startScreen.render({
+  username: state.getIn(['user', 'login']),
+  openProject: !!state.getIn(['project', 'id'])
+});
+observeStore(updateStartScreen, s => s.get('user'));
+observeStore(updateStartScreen, s => s.getIn(['project', 'id']));
 
 // Open a project.
 observeStore(next => {
