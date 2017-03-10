@@ -35,6 +35,12 @@ class LoginDialog {
     this.el.select('#passwordfield').on('keydown', enter);
   }
 
+  focusUsername () {
+    this.el.select('#loginfield')
+      .node()
+      .focus();
+  }
+
   submit () {
     const username = this.el.select('#loginfield').property('value');
     const password = this.el.select('#passwordfield').property('value');

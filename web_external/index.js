@@ -91,6 +91,7 @@ observeStore(next => {
 
     case appMode.loginDialog:
       switchOverlay('login-dialog');
+      loginDialog.focusUsername();
       break;
 
     case appMode.startScreen:
