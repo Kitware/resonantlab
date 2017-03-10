@@ -68,6 +68,10 @@ class StartScreen {
       }
     });
 
+    this.el.select('.close-project').on('click', () => {
+      store.dispatch(action.closeProject());
+    });
+
     this.el.select('.log-in').on('click', () => {
       store.dispatch(action.switchMode(appMode.loginDialog));
     });
@@ -105,6 +109,11 @@ class StartScreen {
     this.el.selectAll('.new-project, .open-project')
       .classed('disabled', !loggedIn)
       .classed('clickable', loggedIn);
+
+    // Gray out the close project button if there's no open project.
+    this.el.select('.close-project')
+      .classed('disabled', !openProject)
+      .classed('clickable', openProject);
 
     // Only display the "close" button if there's already a project open.
     this.el.select('.close-overlay')
