@@ -1,4 +1,3 @@
-import { select } from 'd3-selection';
 import $ from 'jquery';
 import 'datatables-all';
 
@@ -16,9 +15,12 @@ import { datasetIcon,
 import { action,
          store } from '~reslab/redux';
 
-class DatasetPanel {
+import { Panel } from '..';
+
+class DatasetPanel extends Panel {
   initialize (selector) {
-    this.el = select(selector);
+    super.initialize(selector);
+
     this.el.html(html({
       noDataset,
       datasetIcon,
@@ -33,11 +35,6 @@ class DatasetPanel {
       this.el.classed('targeted', !this.el.classed('targeted'));
       store.dispatch(action.togglePanel('dataset'));
     });
-  }
-
-  setTitle (title) {
-    this.el.select('h2.title')
-      .text(title);
   }
 
   showThrobber (loading) {

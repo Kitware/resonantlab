@@ -1,5 +1,3 @@
-import { select } from 'd3-selection';
-
 import html from './index.jade';
 import './index.styl';
 
@@ -13,9 +11,12 @@ import { noVis } from '~reslab/image/message';
 import { action,
          store } from '~reslab/redux';
 
-class VisPanel {
+import { Panel } from '..';
+
+class VisPanel extends Panel {
   initialize (selector) {
-    this.el = select(selector);
+    super.initialize(selector);
+
     this.el.html(html({
       noVis,
       scatterplotIcon,
@@ -30,11 +31,6 @@ class VisPanel {
       this.el.classed('targeted', !this.el.classed('targeted'));
       store.dispatch(action.togglePanel('vis'));
     });
-  }
-
-  setTitle (title) {
-    this.el.select('h2.title')
-      .text(title);
   }
 
   instantiate (VisComponent, data, matchings) {

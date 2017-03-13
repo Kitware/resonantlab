@@ -1,5 +1,3 @@
-import { select } from 'd3-selection';
-
 import html from './index.jade';
 import './index.styl';
 
@@ -12,9 +10,12 @@ import { matchingNoDataset,
 import { action,
          store } from '~reslab/redux';
 
-class MatchingPanel {
+import { Panel } from '..';
+
+class MatchingPanel extends Panel {
   initialize (selector) {
-    this.el = select(selector);
+    super.initialize(selector);
+
     this.el.html(html({
       matchingIcon,
       infoIcon,
@@ -28,11 +29,6 @@ class MatchingPanel {
       this.el.classed('targeted', !this.el.classed('targeted'));
       store.dispatch(action.togglePanel('matching'));
     });
-  }
-
-  setTitle (title) {
-    this.el.select('h2.title')
-      .text(title);
   }
 }
 
