@@ -31,6 +31,7 @@ import './view/overlay/index.styl';
 import './index.styl';
 import './view/panel/index.styl';
 import './style/accordion.styl';
+import './style/dialog.styl';
 import './style/forms/index.css';
 import 'datatables-all/media/css/jquery.dataTables.css';
 

@@ -1,7 +1,6 @@
 import { select } from 'd3-selection';
 
 import html from './index.jade';
-import './index.styl';
 
 import { closeIcon,
          libraryIcon } from '~reslab/image/icon';
