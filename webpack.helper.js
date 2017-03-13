@@ -34,10 +34,9 @@ function generateColorTable (dir) {
 
 module.exports = function (config, data) {
   var pluginSourceDir = path.resolve(data.pluginDir, 'web_external');
-  var nativeSourceDir = /resonantlab\/web_external/;
   var dataTablesDir = /node_modules\/datatables-all/;
 
-  var sourceDirs = [pluginSourceDir, nativeSourceDir];
+  var sourceDirs = [pluginSourceDir];
 
   config.module = config.module || {};
   config.module.loaders = [
