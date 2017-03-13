@@ -1,3 +1,5 @@
+import { event } from 'd3-selection';
+
 import html from './index.jade';
 import './index.styl';
 
@@ -30,6 +32,12 @@ class VisPanel extends Panel {
     this.el.select('.section-header').on('click', () => {
       this.el.classed('targeted', !this.el.classed('targeted'));
       store.dispatch(action.togglePanel('vis'));
+    });
+
+    // Change out visualization.
+    this.el.select('img.swap').on('click', () => {
+      console.log('swap vis');
+      event.stopPropagation();
     });
   }
 
