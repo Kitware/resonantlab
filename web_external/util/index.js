@@ -100,6 +100,13 @@ const gatherDatasetInfo = (item) => {
   };
 };
 
+const setItemMetadata = (itemId, metadata) => restRequest({
+  type: 'PUT',
+  path: `/item/${itemId}/metadata`,
+  data: JSON.stringify(metadata),
+  contentType: 'application/json'
+});
+
 const initializeNewProject = () => {
   const folder = projectFolder();
 
@@ -110,20 +117,12 @@ const initializeNewProject = () => {
       folderId: folder,
       name: 'Untitled Project'
     }
-  }).then(item => {
-    return restRequest({
-      type: 'PUT',
-      path: `/item/${item._id}/metadata`,
-      data: JSON.stringify({
-        dataset: null,
-        itemType: 'project',
-        matchings: [],
-        preferredWidgets: [],
-        visualizations: []
-      }),
-      contentType: 'application/json'
-    });
-  }).then(gatherProjectInfo);
+  }).then(item => setItemMetadata(item._id, {
+    dataset: null,
+    itemType: 'project',
+    matchings: null,
+    vis: null
+  })).then(gatherProjectInfo);
 };
 
 const updateProjectName = (projectId, name) => {
@@ -157,6 +156,7 @@ export {
   switchOverlay,
   gatherProjectInfo,
   gatherDatasetInfo,
+  setItemMetadata,
   initializeNewProject,
   userInformation,
   currentUser,

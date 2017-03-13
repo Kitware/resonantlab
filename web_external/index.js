@@ -89,8 +89,7 @@ const candelaData = Object.keys(candelaComponents).map(key => {
 
   if (component.options) {
     return {
-      name: key,
-      constructorFunction: component
+      name: key
     };
   } else {
     return null;
@@ -198,8 +197,8 @@ observeStore(next => {
   const vis = next.getIn(['vis', 'component']);
   const data = next.getIn(['dataset', 'data']);
   const matchings = next.get('matchings').toJS();
-  if (vis && data) {
-    visPanel.instantiate(vis, data, matchings);
+  if (vis) {
+    visPanel.instantiate(vis, data || [], matchings);
   }
 }, s => s.getIn(['vis', 'component']));
 

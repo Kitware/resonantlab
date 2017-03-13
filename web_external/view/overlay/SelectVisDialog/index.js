@@ -5,9 +5,10 @@ import './index.styl';
 
 import { closeIcon,
          libraryIcon } from '~reslab/image/icon';
-
 import { store,
-         action } from '~reslab/redux';
+         action,
+         appMode } from '~reslab/redux';
+import { setItemMetadata } from '~reslab/util';
 
 class SelectVisDialog {
   initialize (selector) {
@@ -32,7 +33,16 @@ class SelectVisDialog {
       .append('div')
       .classed('circle-button', true)
       .on('click', d => {
-        console.log(d);
+        // Set the vis metadata on the appropriate project.
+        const state = store.getState();
+        const projectId = state.getIn(['project', 'id']);
+        setItemMetadata(projectId, {
+          vis: d.name
+        }).then(() => {
+          store.dispatch(action.setVis(d.name));
+          store.dispatch(action.setPanelTitle('vis', d.name));
+          store.dispatch(action.switchMode(appMode.project));
+        });
       });
 
     icon.append('img')
