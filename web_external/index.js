@@ -3,6 +3,8 @@ import { select,
 
 import { restRequest } from 'girder/rest';
 
+import candelaComponents from 'candela/components';
+
 import { action,
          store,
          observeStore,
@@ -19,6 +21,7 @@ import svgFilters from './style/svgFilters.jade';
 import { header } from './view/layout/Header';
 import { startScreen } from './view/overlay/StartScreen';
 import { loginDialog } from './view/overlay/LoginDialog';
+import { selectVisDialog } from './view/overlay/SelectVisDialog';
 import { openProjectDialog } from './view/overlay/OpenProjectDialog';
 import { datasetPanel } from './view/panel/DatasetPanel';
 import { matchingPanel } from './view/panel/MatchingPanel';
@@ -43,7 +46,8 @@ header.initialize('#header');
 initializeOverlays(select('#overlay'), [
   ['start-screen', startScreen.initialize, startScreen],
   ['login-dialog', loginDialog.initialize, loginDialog],
-  ['open-project-dialog', openProjectDialog.initialize, openProjectDialog]
+  ['open-project-dialog', openProjectDialog.initialize, openProjectDialog],
+  ['select-vis-dialog', selectVisDialog.initialize, selectVisDialog]
 ]);
 
 // Render color defs.
@@ -79,6 +83,20 @@ Promise.all(promises).then(
   }
 );
 
+// Compute a data sheet for all the available Candela components.
+const candelaData = Object.keys(candelaComponents).map(key => {
+  const component = candelaComponents[key];
+
+  if (component.options) {
+    return {
+      name: key,
+      constructorFunction: component
+    };
+  } else {
+    return null;
+  }
+}).filter(x => !!x);
+
 // Render state changes.
 //
 // Change "application mode".
@@ -104,6 +122,11 @@ observeStore(next => {
 
     case appMode.openProjectDialog:
       switchOverlay('open-project-dialog');
+      break;
+
+    case appMode.selectVis:
+      switchOverlay('select-vis-dialog');
+      selectVisDialog.render(candelaData);
       break;
   }
 }, s => s.get('mode'));

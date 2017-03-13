@@ -11,7 +11,8 @@ import { scatterplotIcon,
 import { noVis } from '~reslab/image/message';
 
 import { action,
-         store } from '~reslab/redux';
+         store,
+         appMode } from '~reslab/redux';
 
 import { Panel } from '..';
 
@@ -36,7 +37,7 @@ class VisPanel extends Panel {
 
     // Change out visualization.
     this.el.select('img.swap').on('click', () => {
-      console.log('swap vis');
+      store.dispatch(action.switchMode(appMode.selectVis));
       event.stopPropagation();
     });
   }
