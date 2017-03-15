@@ -4,6 +4,10 @@
   "description": "Choose your own visualization adventure",
   "scripts": {
     "postinstall": "git rev-parse HEAD >git-sha",
+    "postcommit": "git rev-parse HEAD >git-sha",
+    "postrewrite": "git rev-parse HEAD >git-sha",
+    "postcheckout": "git rev-parse HEAD >git-sha",
+    "postmerge": "git rev-parse HEAD >git-sha",
     "lint": "semistandard | snazzy"
   },
   "repository": {
@@ -23,6 +27,7 @@
     "d3-selection": "^1.0.2",
     "datatables-all": "^1.10.13",
     "file-loader": "^0.9.0",
+    "husky": "^0.13.2",
     "immutable": "^3.8.1",
     "jade": "^1.11.0",
     "jade-loader": "^0.8.0",
