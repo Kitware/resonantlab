@@ -2,6 +2,7 @@ import closeIcon from './close.svg';
 import contactIcon from './contact.svg';
 import datasetIcon from './dataset.svg';
 import fileIcon from './file.svg';
+import libraryIcon from './library.svg';
 import folderIcon from './folder.svg';
 import gearIcon from './gear.svg';
 import hamburgerIcon from './hamburger.svg';
@@ -22,6 +23,7 @@ export {
   contactIcon,
   datasetIcon,
   fileIcon,
+  libraryIcon,
   folderIcon,
   gearIcon,
   hamburgerIcon,

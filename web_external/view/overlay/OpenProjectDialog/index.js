@@ -4,7 +4,6 @@ import Papa from 'papaparse';
 import { restRequest } from 'girder/rest';
 
 import html from './index.jade';
-import './index.styl';
 
 import { closeIcon,
          publicFileIcon,

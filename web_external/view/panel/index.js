@@ -9,7 +9,7 @@ class Panel {
     this.el.select('h2.title')
       .text(title);
   }
-};
+}
 
 export {
   Panel

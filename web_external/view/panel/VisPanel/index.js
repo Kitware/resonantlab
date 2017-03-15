@@ -1,3 +1,5 @@
+import { event } from 'd3-selection';
+
 import html from './index.jade';
 import './index.styl';
 
@@ -9,7 +11,8 @@ import { scatterplotIcon,
 import { noVis } from '~reslab/image/message';
 
 import { action,
-         store } from '~reslab/redux';
+         store,
+         appMode } from '~reslab/redux';
 
 import { Panel } from '..';
 
@@ -30,6 +33,12 @@ class VisPanel extends Panel {
     this.el.select('.section-header').on('click', () => {
       this.el.classed('targeted', !this.el.classed('targeted'));
       store.dispatch(action.togglePanel('vis'));
+    });
+
+    // Change out visualization.
+    this.el.select('img.swap').on('click', () => {
+      store.dispatch(action.switchMode(appMode.selectVis));
+      event.stopPropagation();
     });
   }
 
