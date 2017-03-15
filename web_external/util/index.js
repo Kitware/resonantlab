@@ -102,7 +102,7 @@ const gatherDatasetInfo = (item) => {
 
 const setItemMetadata = (itemId, metadata) => restRequest({
   type: 'PUT',
-  path: `/item/${itemId}/metadata`,
+  path: `/item/${itemId}/metadata?allowNull=true`,
   data: JSON.stringify(metadata),
   contentType: 'application/json'
 });
