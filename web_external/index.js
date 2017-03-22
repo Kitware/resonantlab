@@ -22,6 +22,7 @@ import { header } from './view/layout/Header';
 import { startScreen } from './view/overlay/StartScreen';
 import { loginDialog } from './view/overlay/LoginDialog';
 import { selectVisDialog } from './view/overlay/SelectVisDialog';
+import { selectDatasetDialog } from './view/overlay/SelectDatasetDialog';
 import { openProjectDialog } from './view/overlay/OpenProjectDialog';
 import { datasetPanel } from './view/panel/DatasetPanel';
 import { matchingPanel } from './view/panel/MatchingPanel';
@@ -48,7 +49,8 @@ initializeOverlays(select('#overlay'), [
   ['start-screen', startScreen.initialize, startScreen],
   ['login-dialog', loginDialog.initialize, loginDialog],
   ['open-project-dialog', openProjectDialog.initialize, openProjectDialog],
-  ['select-vis-dialog', selectVisDialog.initialize, selectVisDialog]
+  ['select-vis-dialog', selectVisDialog.initialize, selectVisDialog],
+  ['select-dataset-dialog', selectDatasetDialog.initialize, selectDatasetDialog]
 ]);
 
 // Render color defs.
@@ -127,6 +129,11 @@ observeStore(next => {
     case appMode.selectVis:
       switchOverlay('select-vis-dialog');
       selectVisDialog.render(candelaData);
+      break;
+
+    case appMode.selectDataset:
+      switchOverlay('select-dataset-dialog');
+      selectDatasetDialog.render([]);
       break;
   }
 }, s => s.get('mode'));

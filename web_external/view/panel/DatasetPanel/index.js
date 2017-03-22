@@ -1,3 +1,4 @@
+import { event } from 'd3-selection';
 import $ from 'jquery';
 import 'datatables-all';
 
@@ -13,7 +14,8 @@ import { datasetIcon,
          warningIcon } from '~reslab/image/icon';
 
 import { action,
-         store } from '~reslab/redux';
+         store,
+         appMode } from '~reslab/redux';
 
 import { Panel } from '..';
 
@@ -34,6 +36,12 @@ class DatasetPanel extends Panel {
     this.el.select('.section-header').on('click', () => {
       this.el.classed('targeted', !this.el.classed('targeted'));
       store.dispatch(action.togglePanel('dataset'));
+    });
+
+    // Change out dataset.
+    this.el.select('img.swap').on('click', () => {
+      store.dispatch(action.switchMode(appMode.selectDataset));
+      event.stopPropagation();
     });
   }
 
