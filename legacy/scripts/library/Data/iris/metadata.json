@@ -1,0 +1,16 @@
+{
+  "schema": {
+    "petalLength": {
+      "coerceToType": "number"
+    },
+    "petalWidth": {
+      "coerceToType": "number"
+    },
+    "sepalLength": {
+      "coerceToType": "number"
+    },
+    "sepalWidth": {
+      "coerceToType": "number"
+    }
+  }
+}
